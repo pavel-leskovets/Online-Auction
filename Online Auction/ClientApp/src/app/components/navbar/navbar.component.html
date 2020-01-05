@@ -1,0 +1,55 @@
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+  <a class="navbar-brand" routerLink="categories">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink = "/categories">Categories</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink = "/lots">All lots</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink = "/admin">Admin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink = "/createLot">Create lot</a>
+      </li>
+    </ul>
+   
+    <ng-container *ngIf="isLoggedIn && currentUser != null">
+      <ul class="navbar-nav ">
+      <li class="nav-item dropdown dropleft ">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{(currentUser.userName)}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink ="/users/profile/lots" >My lots</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink="/users/profile/bids">My bids</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLink = "/users/profile">My profile</a>
+        </div>
+      </li>
+    </ul>
+    </ng-container>
+   
+    <ng-container *ngIf="!isLoggedIn; else other_content">
+          <button routerLink="signin" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
+          <button routerLink="signup" class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
+    </ng-container>
+    <ng-template #other_content>
+      <button (click)="onLogout()" type="submit" class="btn btn-primary">Log out</button>
+    </ng-template>
+
+  </div>
+
+ 
+</nav>
+
+
+

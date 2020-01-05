@@ -1,0 +1,13 @@
+
+<div  class="container w-25 p-3 mx-auto">
+
+  <ul *ngFor="let category of categories"   class="nav flex-column">
+    <li  class="nav-item" >
+      <a (click)="onSelect(category.id)" class="nav-link active" routerLink="">{{category.name}}</a>
+    </li>
+   </ul>
+ 
+  
+
+</div>
+

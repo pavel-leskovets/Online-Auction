@@ -1,0 +1,22 @@
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\obj\Debug\netcoreapp3.1\BLL.csprojAssemblyReference.cache
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfoInputs.cache
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfo.cs
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\bin\Debug\netcoreapp3.1\BLL.deps.json
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\bin\Debug\netcoreapp3.1\BLL.dll
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\bin\Debug\netcoreapp3.1\BLL.pdb
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\obj\Debug\netcoreapp3.1\BLL.csproj.CopyComplete
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\obj\Debug\netcoreapp3.1\BLL.dll
+C:\Users\Pavel\source\repos\OnlineAuction\BLL\obj\Debug\netcoreapp3.1\BLL.pdb
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\bin\Debug\netcoreapp3.1\BLL.deps.json
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\bin\Debug\netcoreapp3.1\BLL.dll
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\bin\Debug\netcoreapp3.1\BLL.pdb
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\obj\Debug\netcoreapp3.1\BLL.csprojAssemblyReference.cache
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfoInputs.cache
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\obj\Debug\netcoreapp3.1\BLL.AssemblyInfo.cs
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\obj\Debug\netcoreapp3.1\BLL.csproj.CopyComplete
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\obj\Debug\netcoreapp3.1\BLL.dll
+C:\Users\Pavel\source\repos\Online Auction\WebApi\BLL\obj\Debug\netcoreapp3.1\BLL.pdb

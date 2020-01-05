@@ -1,0 +1,20 @@
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\bin\Debug\netcoreapp3.1\DAL.deps.json
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\obj\Debug\netcoreapp3.1\DAL.csprojAssemblyReference.cache
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfoInputs.cache
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfo.cs
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.json
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.dev.json
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\obj\Debug\netcoreapp3.1\DAL.dll
+C:\Users\Pavel\source\repos\OnlineAuction\DAL\obj\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\bin\Debug\netcoreapp3.1\DAL.deps.json
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.json
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\bin\Debug\netcoreapp3.1\DAL.runtimeconfig.dev.json
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\obj\Debug\netcoreapp3.1\DAL.csprojAssemblyReference.cache
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfoInputs.cache
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\obj\Debug\netcoreapp3.1\DAL.AssemblyInfo.cs
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\obj\Debug\netcoreapp3.1\DAL.dll
+C:\Users\Pavel\source\repos\Online Auction\WebApi\DAL\obj\Debug\netcoreapp3.1\DAL.pdb

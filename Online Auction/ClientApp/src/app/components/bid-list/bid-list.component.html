@@ -1,0 +1,10 @@
+<div class="container w-75 ">
+<ul *ngFor="let bid of sortedBids()" class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="row d-flex justify-content-between">
+        <a (click)="onSelect(bid.lotId)" class="nav-link active" routerLink="">{{bid.bidPrice}} $ - {{bid.bidDate | date:'short'}} - Lot ID : {{bid.lotId}}</a>
+      </div>
+      
+    </li>
+  </ul>
+</div>

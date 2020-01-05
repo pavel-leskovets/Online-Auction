@@ -1,0 +1,12 @@
+<div class="container ">
+    <ul *ngFor="let bid of sortedBids()" class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="row d-flex justify-content-between">
+            <a (click)="onSelect(bid.lotId)" class="nav-link active" routerLink="">
+               Bid ID: {{bid.id}}; user ID: {{bid.userId}}; User name: {{bid.userName}}; {{bid.bidPrice}} $; {{bid.bidDate | date:'short'}}; Lot ID : {{bid.lotId}}
+            </a>
+            <button (click)="onClickDelete(bid.id)" class="btn btn-warning">Delete bid</button>
+          </div>
+        </li>
+      </ul>
+    </div>

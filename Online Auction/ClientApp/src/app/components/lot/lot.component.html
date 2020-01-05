@@ -1,0 +1,64 @@
+
+<div *ngIf="lot" class="container-lg">
+  <div class="row">
+    <div class="col-md-4">
+
+      <ng-container *ngIf="lot.imageUrl; else other_content">
+        <img class="img-fluid" [src]="'https://localhost:44334' + lot.imageUrl" alt="Lot image">
+      </ng-container>
+      <ng-template #other_content>
+        <img class="img-fluid" [src]="'https://localhost:44334/upload/default-image.jpg'" alt="Lot image">
+      </ng-template>
+
+      <ng-container *ngIf="!lotIsExpired && !lotIsStarted">
+        <p>Auction is not started yet</p>
+      </ng-container>
+
+      <ng-container *ngIf="!lotIsExpired && lotIsStarted;">
+        <p>Time left:<br>{{timer.days}} Days | {{timer.hours}} Hours | {{timer.minutes}} Minutes | {{timer.seconds}}
+          Seconds </p>
+      </ng-container>
+
+      <ng-container *ngIf="lotIsExpired && lotIsStarted;">
+        <p>Auction has expired.</p>
+        <ng-container *ngIf="(sortedBids()[0] != null) && lotIsStarted; else no_winner">
+          <p>Winner is : {{sortedBids()[0].userName}}</p>
+        </ng-container>
+        <ng-template #no_winner>
+          <p>There is no winner</p>
+        </ng-template>
+      </ng-container>
+    </div>
+
+    <div *ngIf="lot" class="col-md-8">
+      <h3>{{lot.name}}</h3>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between ">Current price: {{lot.currentPrice}} $
+          <div class="row">
+            <div class="btn-group dropleft">
+              <button type="button" class="btn btn-secondary dropdown-toggle dropleft" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{lot.bids.length}} Bids
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" *ngFor="let bid of sortedBids()">{{bid.userName}} - {{bid.bidPrice}}$ -
+                  ({{bid.bidDate | date:'medium'}})</a>
+              </div>
+            </div>
+            <button [disabled]="lotIsExpired || !lotIsStarted" (click)="placeBid()" style="margin-left: 10px;"
+              class="btn btn-primary ">PLACE BID</button>
+            <input [(ngModel)]="bidPrice" value="bidPrice" style="margin-left: 10px; text-align: center; width: 100px"
+              class="input-lg form-control" type="number" [value]="lot.currentPrice + 10">
+          </div>
+        </li>
+        <li class="list-group-item">Initial price: {{lot.initialPrice}}</li>
+        <li class="list-group-item">Lot ID: {{lot.id}}</li>
+        <li class="list-group-item">Begin date: {{lot.beginDate | date:'medium'}}</li>
+        <li class="list-group-item">End date: {{lot.endDate | date:'medium'}}</li>
+        <li class="list-group-item">Description: {{lot.description}}</li>
+        <li class="list-group-item">Seller ID: {{lot.userId}}</li>
+        <li class="list-group-item">Category ID: {{lot.categoryId}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
