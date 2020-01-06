@@ -37,17 +37,13 @@ namespace BLL.Controllers
         /// <summary>
         /// Get all lots.
         /// </summary>
-        /// <returns>200 - at least 1 lot found; 204 - no lots found.</returns>
+        /// <returns>200 - lots found.</returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult<IEnumerable<LotDTO>> GetAllLots()
         {
-            var lots = _lotService.GetLots();
-            if (!lots.Any())
-            {
-                return NoContent();
-            }
-            return Ok(_lotService.GetLots());
+            var lots = _lotService.GetAllLots();
+            return Ok(lots);
         }
 
 

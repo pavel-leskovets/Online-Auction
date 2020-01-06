@@ -107,7 +107,6 @@ namespace BLL.Services
         /// </summary>
         /// <param name="userId">The profile ID.</param>
         /// <returns>The Task, containing user DTO.</returns>
-        /// <exception cref="NotFoundException">Thrown if user not found in DB.</exception>
         public async Task<AppUserDTO> GetUserProfileAsync(string userId)
         {
             var user = await _uow.UserManager.FindByIdAsync(userId);
@@ -115,20 +114,33 @@ namespace BLL.Services
             return mapped;
         }
 
-
+        /// <summary>
+        /// Method for finding lots by profile ID.
+        /// </summary>
+        /// <param name="userId">The profile ID.</param>
+        /// <returns>Collection of lots DTOs.</returns>
         public IEnumerable<LotDTO> GetLotsByProfileAsync(string userId)
         {
             var lots = _uow.Lots.Find(x => x.UserId.Equals(userId));
-           
             return _mapper.Map<IEnumerable<LotDTO>>(lots);
         }
 
+        /// <summary>
+        /// Method for finding bids by profile ID.
+        /// </summary>
+        /// <param name="userId">The profile ID.</param>
+        /// <returns>Collection of bids DTOs.</returns>
         public IEnumerable<BidDTO> GetBidsByProfile(int userId)
         {
             var mapped = _mapper.Map<IEnumerable<BidDTO>>(_uow.Bids.Find(x => x.UserId.Equals(userId)));
             return mapped;
         }
 
+        /// <summary>
+        /// Async method for update user profile.
+        /// </summary>
+        /// <param name="user">User.</param>
+        /// <returns>The Task.</returns>
         public async Task UpdateProfileAsync(AppUserDTO user)
         {
             var userToUpdate =  await _uow.UserManager.FindByIdAsync(user.Id.ToString());
@@ -140,15 +152,38 @@ namespace BLL.Services
             await _uow.UserManager.UpdateAsync(userToUpdate);
         }
 
-        public void Dispose()
-        {
-            _uow.Dispose();
-        }
 
+        /// <summary>
+        /// Async method for deleting user. 
+        /// </summary>
+        /// <param name="id">The profile ID.</param>
+        /// <returns>The Task.</returns>
         public async Task DeleteUserAsync(int id)
         {
             var user = await _uow.UserManager.FindByIdAsync(id.ToString());
             await _uow.UserManager.DeleteAsync(user);
         }
+
+        #region IDisposable Support
+        private bool _isDisposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    _uow.Dispose();
+                }
+
+                _isDisposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

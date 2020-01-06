@@ -29,7 +29,7 @@ namespace BLL.Services
         /// Method for getting all categories.
         /// </summary>
         /// <returns>Collection of categories DTOs.</returns>
-        public IEnumerable<CategoryDTO> GetCategories()
+        public IEnumerable<CategoryDTO> GetAllCategories()
         {
             return _mapper.Map<IEnumerable<CategoryDTO>>(_uow.Categories.GetAll());
         }
@@ -44,6 +44,11 @@ namespace BLL.Services
             return _mapper.Map<CategoryDTO>(_uow.Categories.Get(id));
         }
 
+        /// <summary>
+        /// Method for creating category.
+        /// </summary>
+        /// <param name="category">Category.</param>
+        /// <returns>Created Category DTO.</returns>
         public CategoryDTO CreateCategory(CategoryDTO category)
         {
             var mapped = _mapper.Map<Category>(category);
@@ -51,26 +56,57 @@ namespace BLL.Services
             return _mapper.Map<CategoryDTO>(mapped);
         }
 
+        /// <summary>
+        /// Method for getting lots by category ID.
+        /// </summary>
+        /// <param name="id">Category ID.</param>
+        /// <returns>Collection of lots DTOs.</returns>
         public IEnumerable<LotDTO> GetLotsByCategory(int id)
         {
             var mapped = _mapper.Map<IEnumerable<LotDTO>>(_uow.Lots.Find(x => x.CategoryId.Equals(id)));
             return mapped;
         }
 
-        public void Dispose()
-        {
-            _uow.Dispose();
-        }
-
+        /// <summary>
+        /// Method for deleting category by ID.
+        /// </summary>
+        /// <param name="id">Category ID.</param>
         public void DeleteCategory(int id)
         {
             _uow.Categories.Delete(id);
             _uow.Save();
         }
 
+        /// <summary>
+        /// Method for updating category.
+        /// </summary>
+        /// <param name="category">Category.</param>
         public void EditCategory(CategoryDTO category)
         {
-            throw new NotImplementedException();
+            var mapped = _mapper.Map<Category>(category);
+            _uow.Categories.Update(mapped);
         }
+
+        #region IDisposable Support
+        private bool _isDisposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    _uow.Dispose();
+                }
+
+                _isDisposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
 }

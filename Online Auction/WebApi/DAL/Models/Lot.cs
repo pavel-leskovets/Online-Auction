@@ -68,8 +68,7 @@ namespace DAL.Models
         /// User who created the lot.
         /// </summary>
         public AppUser AppUser { get; set; }
-
-
+        
         /// <summary>
         /// Bids placed on the lot.
         /// </summary>

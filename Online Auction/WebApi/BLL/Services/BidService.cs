@@ -31,7 +31,7 @@ namespace BLL.Services
         /// Method for getting all bids.
         /// </summary>
         /// <returns>Collection of bids DTOs.</returns>
-        public IEnumerable<BidDTO> GetBids()
+        public IEnumerable<BidDTO> GetAllBids()
         {
             return _mapper.Map<IEnumerable<BidDTO>>(_uow.Bids.GetAll());
         }
@@ -43,7 +43,7 @@ namespace BLL.Services
         /// <returns>The Task, containing created bid DTO.</returns>
         /// <exception cref="NotFoundException">Thrown if lot is not found.</exception>
         /// <exception cref="BLValidationException">Thrown when validation is failed.</exception>
-        public BidDTO CreateBid(BidDTO bid)
+        public BidDTO Create(BidDTO bid)
         {
             var currentLot = _uow.Lots.Get(bid.LotId);
 
@@ -113,9 +113,26 @@ namespace BLL.Services
         }
 
 
+        #region IDisposable Support
+        private bool _isDisposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    _uow.Dispose();
+                }
+
+                _isDisposed = true;
+            }
+        }
+
         public void Dispose()
         {
-            _uow.Dispose();
+            Dispose(true);
         }
+        #endregion
     }
 }

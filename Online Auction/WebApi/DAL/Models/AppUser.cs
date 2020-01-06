@@ -40,12 +40,12 @@ namespace DAL.Models
         /// <summary>
         /// Bids placed by the user.
         /// </summary>
-        //public ICollection<Bid> Bids { get; set; }
+        public ICollection<Bid> Bids { get; set; }
 
         /// <summary>
         /// Lots created by the user.
         /// </summary>
-        //public ICollection<Lot> Lots { get; set; }
+        public ICollection<Lot> Lots { get; set; }
 
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    public interface IUserService
+    public interface IUserService : IDisposable
     {
         IEnumerable<AppUserDTO> GetUsers();
 
@@ -25,7 +25,5 @@ namespace BLL.Services
         Task UpdateProfileAsync(AppUserDTO user);
 
         Task DeleteUserAsync(int id);
-
-        void Dispose();
     }
 }

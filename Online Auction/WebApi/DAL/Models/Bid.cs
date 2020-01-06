@@ -39,7 +39,17 @@ namespace DAL.Models
         /// </summary>
         public DateTime BidDate { get; set; }
 
-     
+        /// <summary>
+        /// User who placed bid.
+        /// </summary>
+        public AppUser PlacedUser { get; set; }
+
+        /// <summary>
+        /// Lot where the bid was placed.
+        /// </summary>
+        public Lot Lot { get; set; }
+
+
 
     }
 }

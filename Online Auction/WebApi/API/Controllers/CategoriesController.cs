@@ -25,15 +25,11 @@ namespace API.Controllers
         /// <summary>
         /// Get all categories.
         /// </summary>
-        /// <returns>200 - at least 1 category found; 204 - no categories found.</returns>
+        /// <returns>200 - categories found.</returns>
         [HttpGet]
         public ActionResult<IEnumerable<CategoryDTO>> GetAllCategories()
         {
-            var categories = _categoryService.GetCategories();
-            if (!categories.Any())
-            {
-                return NoContent();
-            }
+            var categories = _categoryService.GetAllCategories();
             return Ok(categories);
         }
 
@@ -57,15 +53,11 @@ namespace API.Controllers
         /// Get lots by category id.
         /// </summary>
         /// <param name="id">Category ID.</param>
-        /// <returns>200 - lots found; 204 - lots not found.</returns>
+        /// <returns>200 - lots found.</returns>
         [HttpGet("{id}/lots")]
         public ActionResult<IEnumerable<LotDTO>> GetLotsByCategory(int id)
         {
             var lots = _categoryService.GetLotsByCategory(id);
-            if (!lots.Any())
-            {
-                return NoContent();
-            }
             return Ok(lots);
         }
                

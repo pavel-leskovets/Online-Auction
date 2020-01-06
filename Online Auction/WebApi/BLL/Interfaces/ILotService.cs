@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    public interface ILotService
+    /// <summary>
+    /// Interface for lots service.
+    /// Contains methods for managing lots.
+    /// </summary>
+    public interface ILotService : IDisposable
     {
-        IEnumerable<LotDTO> GetLots();
+        IEnumerable<LotDTO> GetAllLots();
 
-        LotDTO GetLot(int? id);
+        LotDTO GetLot(int id);
 
         LotDTO CreateLot(LotDTO item);
 
@@ -21,6 +25,5 @@ namespace BLL.Services
 
         void Delete(int id);
 
-        void Dispose();
     }
 }

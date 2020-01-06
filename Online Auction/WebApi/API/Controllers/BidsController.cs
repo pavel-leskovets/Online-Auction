@@ -27,15 +27,11 @@ namespace API.Controllers
         /// <summary>
         /// Get all Bids.
         /// </summary>
-        /// <returns>200 - at least 1 lot found; 204 - no bids found.</returns>
+        /// <returns>200 - lots found.</returns>
         [HttpGet]
         public ActionResult<IEnumerable<BidDTO>> GetAllBids()
         {
-            var bids = _bidService.GetBids();
-            if (!bids.Any())
-            {
-                return NoContent();
-            }
+            var bids = _bidService.GetAllBids();
             return Ok(bids);
         }
 
@@ -69,7 +65,7 @@ namespace API.Controllers
             BidDTO created;
             try
             {
-                created = _bidService.CreateBid(bid);
+                created = _bidService.Create(bid);
             }
             catch (Exception ex)
             {
