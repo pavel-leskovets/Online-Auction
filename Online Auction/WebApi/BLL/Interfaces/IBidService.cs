@@ -29,12 +29,12 @@ namespace BLL.Services
         /// </summary>
         /// <param name="bid">The bid DTO.</param>
         /// <returns>Created bid DTO.</returns>
-        BidDTO Create(BidDTO bid);
+        BidDTO CreateBid(BidDTO bid);
 
         /// <summary>
         /// Method for deleting bid by ID.
         /// </summary>
         /// <param name="id">The bid ID.</param>
-        void Delete(int id);
+        void DeleteBid(int id);
     }
 }

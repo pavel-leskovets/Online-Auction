@@ -10,6 +10,7 @@ namespace DAL.Models
     /// </summary>
     public class AppUser : IdentityUser<int>
     {
+        
         /// <summary>
         /// Id of the user profile.
         /// </summary>
@@ -35,7 +36,7 @@ namespace DAL.Models
         /// </summary>
         public string Phone { get; set; }
 
-        public ICollection<AppUserRole> UserRoles { get; set; }
+        //public ICollection<AppUserRole> UserRoles { get; set; }
 
         /// <summary>
         /// Bids placed by the user.

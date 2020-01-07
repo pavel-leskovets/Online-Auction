@@ -1,1 +1,40 @@
-<p>lots works!</p>
+<div class="container ">
+  <div class="d-flex justify-content-center">
+    <input style="margin-top: 10px;" type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search by name">
+  </div>
+  <ul *ngFor="let lot of lots | lotFilter:searchString" class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between">
+
+        <div class="row justify-content-start">
+        <div >
+          <a (click)="onSelectLot(lot.id)" routerLink="">
+            <ng-container *ngIf="lot?.imageUrl; else other_content">
+              <img class="card-img-top" [src]="'https://localhost:44334' + lot.imageUrl" alt="Lot image">
+            </ng-container>
+            <ng-template #other_content>
+              <img class="card-img-top" [src]="'https://localhost:44334/upload/default-image.jpg'" alt="Lot image">
+            </ng-template>
+          </a>
+        </div>
+
+
+          <div>
+            <a (click)="onSelectLot(lot.id)" class="nav-link active" routerLink="">
+              Lot name: {{lot.name}}. Lot ID: {{lot.id}}. Category ID: {{lot.categoryId}}.<br> 
+              Owner ID: {{lot.userId}}. <br>
+              Initial price: {{lot.initialPrice}} $. Current price: {{lot.currentPrice}} $.<br>
+              Begin date: {{lot.beginDate | date:'short'}}. End date: {{lot.endDate | date:'short'}}. <br>
+              Category ID: {{lot.categoryId}}.<br>
+              Amount of bids: {{lot.bids.length}}.
+           </a>
+            </div>
+          </div>
+
+          <div>
+          <button (click)="onClickDelete(lot.id)" class="btn btn-danger">Delete</button>
+          </div>
+
+
+      </li>
+    </ul>
+  </div>

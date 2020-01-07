@@ -48,7 +48,7 @@ namespace BLL.Services
         /// <param name="id">The lot ID.</param>
         public LotDTO GetLot(int id)
         {
-            var mapped = _mapper.Map<LotDTO>(_uow.Lots.Get(id));
+            var mapped = _mapper.Map<LotDTO>(_uow.Lots.GetById(id));
             return mapped;
         }
 
@@ -73,15 +73,16 @@ namespace BLL.Services
 
             _uow.Lots.Create(mapped);
             _uow.Save();
-            return _mapper.Map<LotDTO>(_uow.Lots.Get(mapped.Id));
+            return _mapper.Map<LotDTO>(_uow.Lots.GetById(mapped.Id));
         }
 
         /// <summary>
         /// Method for updating lot.
         /// </summary>
         /// <param name="lot">The lot DTO.</param>
-        public void Update(LotDTO lot)
+        public void UpdateLot(LotDTO lot)
         {
+            
             var mapped = _mapper.Map<Lot>(lot);
             _uow.Lots.Update(mapped);
             _uow.Save();
@@ -91,7 +92,7 @@ namespace BLL.Services
         /// Method for deleting lot.
         /// </summary>
         /// <param name="id">Lot ID</param>
-        public void Delete(int id)
+        public void DeleteLot(int id)
         {
             _uow.Lots.Delete(id);
             _uow.Save();

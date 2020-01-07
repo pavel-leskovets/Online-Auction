@@ -39,11 +39,6 @@ namespace DAL.EF
             builder.ApplyConfiguration(new RoleConfigurations());
 
             builder.ApplyConfiguration(new BidConfigurations());
-
-
-
-
-
         }
     }
 }

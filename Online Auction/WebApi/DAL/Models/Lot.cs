@@ -22,12 +22,12 @@ namespace DAL.Models
         /// <summary>
         /// Initial price of the lot.
         /// </summary>
-        public decimal InitialPrice { get; set; }
+        public int InitialPrice { get; set; }
 
-        /// <summary>
-        /// Current price of the lot.
-        /// </summary>
-        public decimal CurrentPrice { get; set; }
+        ///// <summary>
+        ///// Current price of the lot.
+        ///// </summary>
+        //public decimal CurrentPrice { get; set; }
 
         /// <summary>
         /// Category Id where the lot was created.

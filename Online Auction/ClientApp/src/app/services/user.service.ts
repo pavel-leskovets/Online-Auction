@@ -59,7 +59,25 @@ export class UserService {
       return this.http.delete(this.rootUrl + '/users/' + id);
     }
 
- 
+  isAdmin() : boolean
+  {
+    var payLoad = JSON.parse(window.atob(this.getToken().split('.')[1]));
+    var userRole = payLoad.role;
+    if (userRole == 'Admin') {
+      return true;
+    }
+    return false;
+  }
+
+  isModerator() : boolean
+  {
+    var payLoad = JSON.parse(window.atob(this.getToken().split('.')[1]));
+    var userRole = payLoad.role;
+    if (userRole == 'Moderator') {
+      return true;
+    }
+    return false;
+  }
 
   roleMatch(allowedRoles): boolean {
     var isMatch = false;

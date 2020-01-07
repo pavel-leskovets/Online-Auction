@@ -28,7 +28,7 @@ namespace DAL.Repositories
         /// </summary>
         public IEnumerable<AppUser> GetAll()
         {
-            return context.Users.Include(x => x.UserRoles).ThenInclude(x => x.Role);
+            return context.Users;
             
         }
     }

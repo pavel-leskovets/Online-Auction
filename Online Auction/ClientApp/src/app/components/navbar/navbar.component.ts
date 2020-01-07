@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
     private lotService: LotService) { }
   
    ngOnInit(){
+     
      this.authService.isLoggedIn().subscribe((data: boolean) => this.isLoggedIn = data);
      if (this.isLoggedIn) {
       this.authService.getUserProfile();
@@ -43,6 +44,22 @@ export class NavbarComponent implements OnInit {
     this.authService.currentUserSubject.next(null);
     this.ngOnInit();
     this.router.navigate(['signin']);
+  }
+
+  isAdmin() : boolean
+  {
+    if (this.isLoggedIn) {
+      return this.userService.isAdmin();
+    }
+    return false;
+  }
+
+  isModerator() : boolean
+  {
+    if (this.isLoggedIn) {
+      return this.userService.isModerator();
+    }
+    return false;
   }
 
 }

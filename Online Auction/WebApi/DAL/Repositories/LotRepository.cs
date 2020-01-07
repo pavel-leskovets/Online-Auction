@@ -31,7 +31,7 @@ namespace DAL.Repositories
         /// <summary>
         /// Method for deleting lot.
         /// </summary>
-        public void Delete(int? id)
+        public void Delete(int id)
         {
             var toDelete = context.Lots.Find(id);
             context.Lots.Remove(toDelete);
@@ -49,7 +49,7 @@ namespace DAL.Repositories
         /// <summary>
         /// Method for fetching lot by id (primary key).
         /// </summary>
-        public Lot Get(int? id)
+        public Lot GetById(int id)
         {
             var lot = context.Lots.Include(x => x.Bids).Where(x => x.Id == id).FirstOrDefault();
             return lot;
@@ -60,7 +60,7 @@ namespace DAL.Repositories
         /// </summary>
         public IEnumerable<Lot> GetAll()
         {
-            return context.Lots;
+            return context.Lots.Include(x => x.Bids);
         }
 
         /// <summary>

@@ -31,6 +31,7 @@ import { EditLotComponent } from './components/edit-lot/edit-lot.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { LotsComponent } from './components/admin/lots/lots.component';
 import { BidsComponent } from './components/admin/bids/bids.component';
+import { EditDateComponent } from './components/edit-lot/edit-date/edit-date.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { BidsComponent } from './components/admin/bids/bids.component';
     UsersComponent,
     LotsComponent,
     BidsComponent,
+    EditDateComponent,
     
   ],
   imports: [

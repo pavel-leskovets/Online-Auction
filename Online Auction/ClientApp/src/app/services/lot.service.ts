@@ -70,6 +70,27 @@ export class LotService {
     return this.http.get<Lot[]>(this.rootUrl + '/users/profile/lots');
   }
 
+  updateLot(image, lotId)
+  {
+    const formData: FormData = new FormData();
+
+    if (this.currentUser) {
+     formData.append('UserId', this.currentUser.id.toString());
+    }
+     formData.append('id', lotId);
+     formData.append('Name', this.AddLotForm.value.LotName);
+     formData.append('InitialPrice', this.AddLotForm.value.InitialPrice);
+     formData.append('CategoryId', this.AddLotForm.value.CategoryId);
+     formData.append('BeginDate', this.AddLotForm.value.BeginDate.toISOString());
+     formData.append('EndDate', this.AddLotForm.value.EndDate.toISOString());
+     formData.append('Description', this.AddLotForm.value.Description);
+     formData.append('Image', image, image.name);
+     
+     
+     console.log(formData);
+     return this.http.put(this.rootUrl + '/lots/' + lotId, formData );  
+  }
+
   deleteLot(id)
   {
     return this.http.delete(this.rootUrl + '/lots/' + id);

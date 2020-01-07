@@ -8,18 +8,19 @@ using System.Text;
 
 namespace BLL.Mapping
 {
+    /// <summary>
+    /// Automapper profile.
+    /// </summary>
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            CreateMap<Lot, LotDTO>().ReverseMap();
+            CreateMap<Lot, LotDTO>().ForMember(x => x.CurrentPrice, x => x.MapFrom(
+                src => !src.Bids.Any() ? src.InitialPrice : src.Bids.LastOrDefault().BidPrice));
+            CreateMap<LotDTO, Lot>();
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<Bid, BidDTO>().ReverseMap();
-            CreateMap<AppUser, AppUserDTO>().ForMember(x => x.Role, x => x.MapFrom(x => x.UserRoles.Select(x => x.Role.Name).FirstOrDefault()));
-            CreateMap<AppUserDTO, AppUser>();
-
-
-
+            CreateMap<AppUser, AppUserDTO>().ReverseMap();
         }
     }
 }

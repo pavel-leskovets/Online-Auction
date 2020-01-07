@@ -25,7 +25,7 @@ namespace DAL.Interfaces
         /// <summary>
         /// Method for fetching entity by id (primary key).
         /// </summary>
-        T Get(int? id);
+        T GetById(int id);
 
         /// <summary>
         /// Method for creating entity.
@@ -40,6 +40,7 @@ namespace DAL.Interfaces
         /// <summary>
         /// Method for deleting entity.
         /// </summary>
-        void Delete(int? id);
+        void Delete(int id);
+       
     }
 }

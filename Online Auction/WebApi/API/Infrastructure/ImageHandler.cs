@@ -8,8 +8,17 @@ using System.Threading.Tasks;
 
 namespace API.Infrastructure
 {
+    /// <summary>
+    /// Class which handles received images.
+    /// </summary>
     public static class ImageHandler
     {
+        /// <summary>
+        /// Method for uploading image to wwwroot/upload directory
+        /// </summary>
+        /// <param name="image">Received image.</param>
+        /// <param name="_environment">Web Host Environment</param>
+        /// <returns>Path where image is stored.</returns>
         public static string SaveImage(IFormFile image, IWebHostEnvironment _environment)
         {
             var randomName = $"{Guid.NewGuid()}." + image.ContentType.Substring(6);

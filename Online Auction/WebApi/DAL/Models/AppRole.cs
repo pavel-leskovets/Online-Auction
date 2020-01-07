@@ -10,7 +10,7 @@ namespace DAL.Models
     /// </summary>
     public class AppRole : IdentityRole<int>
     {
-        public ICollection<AppUserRole> UserRoles { get; set; }
+       
 
     }
 }

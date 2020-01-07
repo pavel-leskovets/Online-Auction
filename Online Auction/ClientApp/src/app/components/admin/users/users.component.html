@@ -1,12 +1,14 @@
-<div *ngIf="users" class="container ">
+<div *ngIf="users" class="container" >
     <ul *ngFor="let user of users" class="list-group list-group-flush">
-        <li class="list-group-item">
-          <div class="row d-flex justify-content-between">
-            <a (click)="onSelect(user.id)" class="nav-link active" routerLink="">
-              Role: {{user.appRole}}; User ID: {{user.id}}; User name: {{user.userName}}
+        <li class="list-group-item d-flex justify-content-between">
+          <div >
+            <a class="nav-link active">
+              ID: {{user.id}}; Login: {{user.userName}}; Email: {{user.email}}; First name:{{user.firstName}}; Last name:{{user.lastName}}; Addres:{{user.addres}}; Phone:{{user.phone}};
             </a>
-            <button (click)="onClickDelete(user.id)" class="btn btn-danger">Delete user</button>
           </div>
+            <div>
+              <button (click)="onClickDelete(user.id)" class="btn btn-danger">Delete</button>
+            </div>
         </li>
       </ul>
     </div>

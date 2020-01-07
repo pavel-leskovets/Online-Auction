@@ -114,16 +114,29 @@ namespace BLL.Controllers
         /// <param name="lot">Lot.</param>
         /// <returns>204 - lot updated; 400 - lot validation failed; 404 - lot not found.</returns>
         [HttpPut("{id}")]
-        public ActionResult EditLot(int id, [FromBody] LotDTO lot)
+        public ActionResult EditLot(int id, [FromForm] LotDTO lot)
         {
             if (id != lot.Id)
-            {
                 return BadRequest();
-            }
+            
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            if (!lot.Image.ContentType.Contains("image"))
+                return BadRequest("Invalid image format.");
+                                   
             try
             {
-                _lotService.Update(lot);
+                lot.ImageUrl = ImageHandler.SaveImage(lot.Image, _environment);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Image upload error.");
+            }
+           
+            try
+            {
+                _lotService.UpdateLot(lot);
             }
             catch (Exception ex)
             {
@@ -152,8 +165,8 @@ namespace BLL.Controllers
             {
                 return NotFound();
             }
-            _lotService.Delete(id);
-            return toDelete;
+            _lotService.DeleteLot(id);
+            return NoContent();
         }
     }
 }

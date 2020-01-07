@@ -27,7 +27,7 @@ namespace BLL.ModelsDTO
         /// Initial price of the lot.
         /// </summary>
         [Required]
-        public decimal InitialPrice { get; set; }
+        public int InitialPrice { get; set; }
 
         /// <summary>
         /// Current maximum price.

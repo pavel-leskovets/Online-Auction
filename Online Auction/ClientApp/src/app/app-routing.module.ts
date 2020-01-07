@@ -20,28 +20,29 @@ import { BidsComponent } from './components/admin/bids/bids.component';
 
 
 const routes: Routes = [
-  { path: 'lots/:id/edit', component: EditLotComponent, canActivate: [SignInGuard]},
-  { path: 'users/profile/bids', component: BidListComponent, canActivate: [SignInGuard]},
-  { path: 'users/profile', component: UserProfileComponent, canActivate: [SignInGuard]},
   { 
     path: 'admin', component: AdminComponent, canActivate: [SignInGuard], data : {permittedRoles : ['Admin', 'Moderator']},
     children: [
-      { path: 'users', component: UsersComponent},
+      { path: 'users', component: UsersComponent, canActivate: [SignInGuard], data : {permittedRoles : ['Admin']}},
       { path: 'lots', component: LotsComponent},
       { path: 'bids', component: BidsComponent}
     ]
   },
-  { path: 'forbidden', component: ForbiddenComponent},
+  { path: 'createLot', component: CreateLotComponent, canActivate: [SignInGuard]},
   { path: 'signin', component: SignInComponent, canActivate: [UnauthorizedGuard]},
   { path: 'signup', component: SignUpComponent, canActivate: [UnauthorizedGuard]},
-  { path: 'categories', component: CategoryListComponent},
-  { path: 'users/profile/lots', component: LotListComponent, canActivate: [SignInGuard]},
-  { path: 'categories/:id/lots', component: LotListComponent},
   { path: 'lots', component: LotListComponent},
-  { path: 'createLot', component: CreateLotComponent, canActivate: [SignInGuard]},
   { path: 'lots/:id', component: LotComponent},
-  { path: '', component: CategoryListComponent, pathMatch: 'full' },
-  { path: '**', redirectTo: 'categories' }
+  { path: 'lots/:id/edit', component: EditLotComponent, canActivate: [SignInGuard]},
+  { path: 'users/profile', component: UserProfileComponent, canActivate: [SignInGuard]},
+  { path: 'users/profile/bids', component: BidListComponent, canActivate: [SignInGuard]},
+  { path: 'users/profile/lots', component: LotListComponent, canActivate: [SignInGuard]},
+  { path: 'categories', component: CategoryListComponent},
+  { path: 'categories/:id/lots', component: LotListComponent},
+  { path: 'forbidden', component: ForbiddenComponent},
+  { path: '**', redirectTo: 'categories' },
+  { path: '', component: CategoryListComponent, pathMatch: 'full' }
+ 
 ];
 
 @NgModule({

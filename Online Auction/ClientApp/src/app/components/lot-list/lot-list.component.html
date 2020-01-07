@@ -3,7 +3,7 @@
     <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search by name">
   </div>
   <div class="row">
-    <div *ngFor="let lot of lots | lotFilter:searchString" class=" col-sm-4">
+    <div *ngFor="let lot of lots | lotFilter:searchString" class=" col-md-4">
       <div class="card">
         <a routerLink="" (click)="onSelectLot(lot.id)">
           <ng-container *ngIf="lot?.imageUrl; else other_content">
@@ -18,12 +18,16 @@
             {{lot.name}}
           </a>
           <p class="card-text">{{lot.currentPrice}} USD
-            <br>End date: {{lot.endDate | date:'medium'}}
+            <br>Begin: {{lot.beginDate | date:'mediumDate'}}
+            <br>End: {{lot.endDate | date:'mediumDate'}}
           </p>
 
           <ng-container *ngIf="isLotsByProfile">
-            <a routerLink="" (click)="onEditLot(lot.id)">Edit lot</a> <br>  
-            <a routerLink="" (click)="onDeleteLot(lot.id)">Delete lot</a>        
+            <div class="d-flex justify-content-between">
+              <button type="button"  class="btn btn-primary btn-sm" (click)="onEditLot(lot)">Edit</button> 
+              <button type="button" class="btn btn-warning btn-sm" (click)="onDeleteLot(lot.id)">Delete</button>        
+            </div>
+
           </ng-container>
 
         </div>

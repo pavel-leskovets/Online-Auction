@@ -31,7 +31,7 @@ namespace DAL.Repositories
         /// <summary>
         /// Method for deleting bid.
         /// </summary>
-        public void Delete(int? id)
+        public void Delete(int id)
         {
             var toDelete = context.Bids.Find(id);
             context.Bids.Remove(toDelete);
@@ -49,7 +49,7 @@ namespace DAL.Repositories
         /// <summary>
         /// Method for fetching bid by id (primary key).
         /// </summary>
-        public Bid Get(int? id)
+        public Bid GetById(int id)
         {
             return context.Bids.Find(id);
         }

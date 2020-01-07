@@ -16,6 +16,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace BLL.Infrastructure
 {
+    /// <summary>
+    /// Extension for registration services.
+    /// </summary>
     public static class ServiceCollectionsExtension
     {
         public static IServiceCollection RegisterBllServices(this IServiceCollection services, string connectionString)

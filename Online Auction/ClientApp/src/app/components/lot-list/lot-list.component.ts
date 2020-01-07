@@ -15,8 +15,8 @@ export class LotListComponent implements OnInit {
   public searchString: string;
   private lots: Lot[];
   private categoryId: string;
-  pathSnapshot: string;
-  isLotsByProfile: boolean;
+  private pathSnapshot: string;
+  private isLotsByProfile: boolean;
 
   constructor(
     private lotService: LotService,
@@ -62,22 +62,22 @@ export class LotListComponent implements OnInit {
     this.router.navigate(['/lots', id]);
   }
 
-  onEditLot(id)
+  onEditLot(lot: Lot)
   {
-    // var dateLotBegin = this.lots.find(x => x.id == id).beginDate
-    // var date2 = new Date(dateLotBegin);
-    // var currentDate = new Date();
-    // //var currentDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
-    // console.log(date2);
-    // console.log(currentDate);
-    // if (date2 < currentDate) {
-    //   this.toastr.error('You can not edit auction after it started');
-    //   return;
-    // }
-    // else{
-    //   this.router.navigate(['/lots',id ,'edit'])
-    // }
-    this.router.navigate(['/lots',id ,'edit']);
+    var now = new Date().getTime();
+    var start = new Date(lot.beginDate).getTime();
+    console.log(lot);
+    if (now - start > 0) {
+      this.toastr.error('You can not edit auction after it started');
+      
+    }
+    else{
+      this.router.navigate(['/lots', lot.id,'edit']);
+      }
+    
+     
+    
+    
   }
 
   onDeleteLot(id)
@@ -85,10 +85,10 @@ export class LotListComponent implements OnInit {
     this.lotService.deleteLot(id).subscribe(
       res => {
         this.toastr.success('The lot has been deleted');
-        this.router.navigate(['/users/profile/lots']);
+        this.ngOnInit();
       },
       err => {
-        this.toastr.error(err.error);
+        console.log(err);
       }
     )
   }

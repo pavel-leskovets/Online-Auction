@@ -119,7 +119,7 @@ namespace BLL.Controllers
             {
                 return NotFound("User not found");
             }
-            var lots = _userService.GetLotsByProfileAsync(userId);
+            var lots = _userService.GetLotsByProfile(user.Id);
             return Ok(lots);
         }
 
@@ -151,21 +151,22 @@ namespace BLL.Controllers
         /// <returns>201 - user created, 400 - validation failed.</returns>
         [AllowAnonymous]
         [HttpPost("Register")]
-        public async Task<ActionResult> RegisterUserAsync([FromBody]UserRegistration regData)
+        public async Task<ActionResult<AppUserDTO>> RegisterUserAsync([FromBody]UserRegistration regData)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            AppUserDTO created;
             try
             {
-                var result = await _userService.CreateUserAsync(regData);
-                return Ok(result);
+                created = await _userService.CreateUserAsync(regData);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+            return CreatedAtAction(nameof(GetUserById), new { id = created.Id }, created);
         }
 
         /// <summary>
@@ -175,18 +176,18 @@ namespace BLL.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<ActionResult> LoginAsync([FromBody]LoginData loginData)
+        public async Task<ActionResult<string>> LoginAsync([FromBody]LoginData loginData)
         {
+            string token;
             try
             {
-                var token = await _userService.LoginAsync(loginData);
-                return Ok(new { token });
+                token = await _userService.LoginAsync(loginData);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            
+            return Ok(new { token });
         }
 
         /// <summary>
@@ -205,7 +206,7 @@ namespace BLL.Controllers
                 return NotFound();
             }
             await _userService.DeleteUserAsync(id);
-            return userToDelete;
+            return NoContent();
         }
     }
 }

@@ -43,29 +43,36 @@ namespace BLL.Services
         /// <returns>The Task, containing created bid DTO.</returns>
         /// <exception cref="NotFoundException">Thrown if lot is not found.</exception>
         /// <exception cref="BLValidationException">Thrown when validation is failed.</exception>
-        public BidDTO Create(BidDTO bid)
+        public BidDTO CreateBid(BidDTO bid)
         {
-            var currentLot = _uow.Lots.Get(bid.LotId);
+            var currentLot = _uow.Lots.GetById(bid.LotId);
 
             if (currentLot == null)
             {
                 throw new NotFoundException("Lot is not found");
             }
-
-            if (bid.BidPrice <= currentLot.CurrentPrice)
-                throw new BLValidationException("Bid price should be higher than current price ");
-            else if (bid.BidDate > currentLot.EndDate)
+            if (currentLot.Bids.Any())
+            {
+                if (bid.BidPrice <= currentLot.Bids.Last().BidPrice)
+                    throw new BLValidationException("Bid price should be higher than current price");
+            }
+            if (!currentLot.Bids.Any())
+            {
+                if (bid.BidPrice <= currentLot.InitialPrice)
+                    throw new BLValidationException("Bid price should be higher than current price");
+            }
+            
+            if (bid.BidDate > currentLot.EndDate)
                 throw new BLValidationException("Bid can’t be placed after auction end");
-            else if (bid.BidDate < currentLot.BeginDate)
+            if (bid.BidDate < currentLot.BeginDate)
                 throw new BLValidationException("Bid can’t be placed before auction start");
-            else if (bid.UserId == currentLot.UserId)
+            if (bid.UserId == currentLot.UserId)
                 throw new BLValidationException("Lot owner can't place bid on own auction");
-      
-            currentLot.CurrentPrice = bid.BidPrice;
 
-             var mapped = _mapper.Map<Bid>(bid);
+            var mapped = _mapper.Map<Bid>(bid);
+           
             _uow.Bids.Create(mapped);
-            _uow.Lots.Update(currentLot);
+           
             _uow.Save();
 
             return _mapper.Map<BidDTO>(mapped);
@@ -79,35 +86,16 @@ namespace BLL.Services
         /// <returns>Bid DTO.</returns>
         public BidDTO GetBid(int id)
         {
-            return _mapper.Map<BidDTO>(_uow.Bids.Get(id));
+            var mapped = _mapper.Map<BidDTO>(_uow.Bids.GetById(id));
+            return mapped;
         }
 
         /// <summary>
         /// Method for deleting bid by ID.
         /// </summary>
         /// <param name="id">The bid ID.</param>
-        public void Delete(int id)
+        public void DeleteBid(int id)
         {
-            var bidToDelete = _uow.Bids.Get(id);
-         
-            var currentLot = _uow.Lots.Get(bidToDelete.LotId);
-
-            if (currentLot != null)
-            {
-                if (bidToDelete.BidPrice == currentLot.CurrentPrice)
-                {
-                    if (currentLot.Bids.Count() == 1)
-                    {
-                        currentLot.CurrentPrice = currentLot.InitialPrice;
-                    }
-                    else
-                    {
-                        currentLot.CurrentPrice = currentLot.Bids.OrderByDescending(x => x.BidPrice).Skip(1).First().BidPrice;
-                    }
-                    _uow.Lots.Update(currentLot);
-                }
-            }
-           
             _uow.Bids.Delete(id);
             _uow.Save();
         }

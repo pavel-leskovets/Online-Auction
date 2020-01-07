@@ -42,12 +42,11 @@ namespace DAL.Models
         /// <summary>
         /// User who placed bid.
         /// </summary>
-        public AppUser PlacedUser { get; set; }
+        public AppUser AppUser { get; set; }
 
-        /// <summary>
-        /// Lot where the bid was placed.
-        /// </summary>
-        public Lot Lot { get; set; }
+       
+
+
 
 
 

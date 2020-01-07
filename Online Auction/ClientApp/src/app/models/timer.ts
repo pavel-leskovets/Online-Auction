@@ -24,7 +24,7 @@ export class Timer {
       
         this.interval = setInterval(() => {
           
-            var now = new Date().getTime();
+        var now = new Date().getTime();
       
       var distanceToBegin = beginDate - now;
             

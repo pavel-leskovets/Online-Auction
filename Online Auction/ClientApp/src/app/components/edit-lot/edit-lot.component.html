@@ -1,9 +1,9 @@
-<!-- <div class="container">
+<div *ngIf="currentLot"  class="container">
     <h1 class="text-center">Edit lot</h1>
   <div class="row">
       <div class=" col ">
       <div class="form-group">
-        <app-date-picker (startDateEvent)="reciveStartDate($event)" (endDateEvent)="reciveEndDate($event)"></app-date-picker>
+        <app-edit-date (startDateEvent)="reciveStartDate($event)" (endDateEvent)="reciveEndDate($event)"></app-edit-date>
       </div>
       <hr>
       <p>From: {{fromDate | date:'medium'}}</p>
@@ -17,17 +17,16 @@
        
           <div class="form-group" >
             <label>Lot name</label>
-            <input type="text" class="form-control" formControlName="LotName">
+            <input type="text" class="form-control" formControlName="LotName" [ngModel]="currentLot.name">
           </div>
           <div class="form-group">
             <label>Initial price</label>
-            <input type="number" class="form-control" formControlName="InitialPrice">
+            <input type="number" class="form-control" formControlName="InitialPrice"[ngModel]="currentLot.initialPrice" >
           </div>
           
           <div  class="form-group">
             <label>Category</label>
-            <select class="form-control" formControlName="CategoryId"
-           >
+            <select class="form-control" formControlName="CategoryId">
             <option *ngFor="let category of categories" [value]="category.id" id="category.id">{{category.name}}</option>
           </select>
           </div>
@@ -39,7 +38,7 @@
           
           <div class="form-group">
             <label>Description</label>
-            <textarea class="form-control" aria-label="With textarea" formControlName="Description"></textarea>
+            <textarea class="form-control" aria-label="With textarea" formControlName="Description" [ngModel]="currentLot.description"></textarea>
             
           </div>
           
@@ -53,4 +52,4 @@
         </form>
       </div>
       
-   -->
+  

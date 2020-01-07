@@ -44,7 +44,7 @@ namespace DAL.EF.EntitiesConfigurations
                     BeginDate = DateTime.Now,
                     CategoryId = i,
                     EndDate = DateTime.Now.AddDays(1),
-                    CurrentPrice = 100,
+                    //CurrentPrice = 100,
                     Description = "Description" + i
                 });
             }
@@ -60,7 +60,7 @@ namespace DAL.EF.EntitiesConfigurations
                     BeginDate = DateTime.Now,
                     CategoryId = j++,
                     EndDate = DateTime.Now.AddDays(1),
-                    CurrentPrice = 100,
+                    //CurrentPrice = 100,
                     Description = "Description" + i
                 });
             }

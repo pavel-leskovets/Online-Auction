@@ -19,7 +19,7 @@ using BLL.Exeptions;
 namespace BLL.Services
 {
     /// <summary>
-    /// Contains methods for managing users and their profiles.
+    /// Contains methods for managing users.
     /// </summary>
     public class UserService : IUserService
     {
@@ -51,7 +51,8 @@ namespace BLL.Services
         /// <param name="regData">User registration entity</param>
         /// <exception cref="ArgumentNullException">Thrown if user is null.</exception>
         /// <exception cref="ValidationException">Thrown if user validation failed.</exception>
-        public async Task<IdentityResult> CreateUserAsync(UserRegistration regData)
+        /// <returns>The Task, containing created user DTO.</returns>
+        public async Task<AppUserDTO> CreateUserAsync(UserRegistration regData)
         {
             if (regData == null)
                 throw new ArgumentNullException(nameof(regData), "User is null.");
@@ -66,13 +67,14 @@ namespace BLL.Services
             };
             var result = await _uow.UserManager.CreateAsync(appUser, regData.Password);
             await _uow.UserManager.AddToRoleAsync(appUser, "Customer");
-            return result;
+            var userDTO = _mapper.Map<AppUserDTO>(appUser);
+            return userDTO;
         }
 
         /// <summary>
         /// Async method for authenticating user.
         /// </summary>
-        /// <param name="loginData">Entity for user authentication</param>
+        /// <param name="loginData">Model for user authentication</param>
         /// <returns>The Task, containing token string.</returns>
         public async Task<string> LoginAsync(LoginData loginData)
         {
@@ -119,7 +121,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="userId">The profile ID.</param>
         /// <returns>Collection of lots DTOs.</returns>
-        public IEnumerable<LotDTO> GetLotsByProfileAsync(string userId)
+        public IEnumerable<LotDTO> GetLotsByProfile(int userId)
         {
             var lots = _uow.Lots.Find(x => x.UserId.Equals(userId));
             return _mapper.Map<IEnumerable<LotDTO>>(lots);
@@ -139,7 +141,7 @@ namespace BLL.Services
         /// <summary>
         /// Async method for update user profile.
         /// </summary>
-        /// <param name="user">User.</param>
+        /// <param name="user">User DTO.</param>
         /// <returns>The Task.</returns>
         public async Task UpdateProfileAsync(AppUserDTO user)
         {

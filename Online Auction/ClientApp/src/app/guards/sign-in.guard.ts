@@ -27,7 +27,6 @@ export class SignInGuard implements CanActivate {
             return true;
           else {
             this.router.navigate(['/forbidden']);
-            this.toastr.error('Forbidden');
             return false;
           }  
           

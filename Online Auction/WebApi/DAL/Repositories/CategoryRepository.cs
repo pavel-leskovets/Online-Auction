@@ -32,7 +32,7 @@ namespace DAL.Repositories
         /// <summary>
         /// Method for deleting category.
         /// </summary>
-        public void Delete(int? id)
+        public void Delete(int id)
         {
             Category category = context.Categories.Find(id);
             if (category != null)
@@ -53,7 +53,7 @@ namespace DAL.Repositories
         /// <summary>
         /// Method for fetching category by id (primary key).
         /// </summary>
-        public Category Get(int? id)
+        public Category GetById(int id)
         {
             return context.Categories.Find(id);
         }

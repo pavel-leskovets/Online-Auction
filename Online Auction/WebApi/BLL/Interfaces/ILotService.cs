@@ -15,15 +15,38 @@ namespace BLL.Services
     /// </summary>
     public interface ILotService : IDisposable
     {
+        /// <summary>
+        /// Method for getting all lots.
+        /// </summary>
+        /// <returns>Collection of lots DTOs.</returns>
         IEnumerable<LotDTO> GetAllLots();
 
-        LotDTO GetLot(int id);
+        /// <summary>
+        /// Method for getting lot by ID.
+        /// </summary>
+        /// <param name="lotId">The lot ID.</param>
+        /// <returns>Lot DTO.</returns>
+        LotDTO GetLot(int lotId);
 
-        LotDTO CreateLot(LotDTO item);
+        /// <summary>
+        /// Method for creating lot.
+        /// </summary>
+        /// <param name="lot">The lot DTO.</param>
+        /// <returns>Created lot DTO.</returns>
+        LotDTO CreateLot(LotDTO lot);
 
-        void Update(LotDTO item);
+        /// <summary>
+        /// Method for updating lot.
+        /// </summary>
+        /// <param name="lot">The lot DTO.</param>
+        void UpdateLot(LotDTO lot);
 
-        void Delete(int id);
+        /// <summary>
+        /// Method for deleting lot.
+        /// </summary>
+        /// <param name="lotId">The lot ID.</param>
+        /// <returns>The Task.</returns>
+        void DeleteLot(int lotId);
 
     }
 }

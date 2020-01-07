@@ -71,17 +71,26 @@ export class CreateLotComponent implements OnInit {
   
   onSubmit() 
   {
-    this.lotService.createLot(this.image).subscribe(
-      res => {
-        this.toastr.success('Success', 'New lot has been created');
-        this.ngOnInit();
-      },
-      err => {
-        console.log(err);
-        
-        this.toastr.error(err.error);
-      }
-    )
+    var now = new Date().getTime();
+    var start = this.fromDate.getTime();
+     
+    if ( false) {
+      this.toastr.error("Auction can't begin earlier than now");
+    }
+    else
+    {
+      this.lotService.createLot(this.image).subscribe(
+        res => {
+          this.toastr.success('New lot has been created');
+          this.ngOnInit();
+        },
+        err => {
+          console.log(err);
+          this.toastr.error(err.error);
+        }
+      )
+    }
+    
 
   }
 

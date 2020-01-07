@@ -15,7 +15,7 @@ namespace API.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class BidsController : ControllerBase
     {
         private readonly IBidService _bidService;
@@ -27,7 +27,7 @@ namespace API.Controllers
         /// <summary>
         /// Get all Bids.
         /// </summary>
-        /// <returns>200 - lots found.</returns>
+        /// <returns>200 - bids found.</returns>
         [HttpGet]
         public ActionResult<IEnumerable<BidDTO>> GetAllBids()
         {
@@ -65,11 +65,11 @@ namespace API.Controllers
             BidDTO created;
             try
             {
-                created = _bidService.Create(bid);
+                created = _bidService.CreateBid(bid);
             }
             catch (Exception ex)
             {
-                return BadRequest("Validation error. " + ex.Message); 
+                return BadRequest("Validation error. " + ex.Message);
             }
             return CreatedAtAction(nameof(GetBid), new { id = created.Id }, created);
         }
@@ -89,8 +89,8 @@ namespace API.Controllers
             {
                 return NotFound();
             }
-            _bidService.Delete(id);
-            return toDelete;
+            _bidService.DeleteBid(id);
+            return NoContent();
         }
     }
 }

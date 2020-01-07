@@ -41,7 +41,7 @@ namespace BLL.Services
         /// <returns>Category DTO.</returns>
         public CategoryDTO GetCategory(int id)
         {
-            return _mapper.Map<CategoryDTO>(_uow.Categories.Get(id));
+            return _mapper.Map<CategoryDTO>(_uow.Categories.GetById(id));
         }
 
         /// <summary>

@@ -119,7 +119,7 @@ namespace API.Controllers
                 return NotFound();
             }
             _categoryService.DeleteCategory(id);
-            return toDelete;
+            return NoContent();
         }
     }
 }
