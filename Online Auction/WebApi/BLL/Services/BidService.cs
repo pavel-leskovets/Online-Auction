@@ -8,7 +8,7 @@ using System.Text;
 using DAL.Models;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using BLL.Exeptions;
+using BLL.Exceptions;
 
 namespace BLL.Services
 {
@@ -51,6 +51,7 @@ namespace BLL.Services
             {
                 throw new NotFoundException("Lot is not found");
             }
+
             if (currentLot.Bids.Any())
             {
                 if (bid.BidPrice <= currentLot.Bids.Last().BidPrice)

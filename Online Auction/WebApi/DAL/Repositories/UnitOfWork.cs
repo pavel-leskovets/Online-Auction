@@ -1,13 +1,8 @@
 ﻿using DAL.EF;
-
 using DAL.Interfaces;
 using DAL.Models;
-
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAL.Repositories
 {
@@ -50,6 +45,7 @@ namespace DAL.Repositories
                 return lotRepository;
             }
         }
+
         public IRepository<Bid> Bids
         {
             get
@@ -78,9 +74,10 @@ namespace DAL.Repositories
             _context.SaveChanges();
         }
 
-    #region Dispose 
+        #region IDisposable Support 
+
         private bool disposed = false;
-        public virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (!this.disposed)
             {
@@ -97,9 +94,8 @@ namespace DAL.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        
-    #endregion
+       
+        #endregion
 
     }
 }

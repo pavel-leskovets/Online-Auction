@@ -90,6 +90,7 @@ namespace API.Controllers
             }
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
             try
             {
                 _categoryService.EditCategory(category);

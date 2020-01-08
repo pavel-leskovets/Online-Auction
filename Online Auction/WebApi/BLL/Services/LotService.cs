@@ -1,18 +1,10 @@
 ﻿using AutoMapper;
-using BLL.Services;
 using BLL.ModelsDTO;
 using DAL.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using DAL.Models;
-using System.IO;
-
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using BLL.Infrastructure;
-using Newtonsoft.Json;
-using BLL.Exeptions;
+using BLL.Exceptions;
+using System;
 
 namespace BLL.Services
 {
@@ -64,10 +56,16 @@ namespace BLL.Services
             {
                 throw new BLValidationException("Auction begin date must be earlier than the end.");
             }
+            if (lot.BeginDate < DateTime.Now)
+            {
+                throw new BLValidationException("Auction can't begin earlier than now.");
+            }
             if (lot.InitialPrice <= 0)
             {
                 throw new BLValidationException("Lot price must be greater than zero.");
             }
+           
+
 
             var mapped = _mapper.Map<Lot>(lot);
 
@@ -81,8 +79,7 @@ namespace BLL.Services
         /// </summary>
         /// <param name="lot">The lot DTO.</param>
         public void UpdateLot(LotDTO lot)
-        {
-            
+        {            
             var mapped = _mapper.Map<Lot>(lot);
             _uow.Lots.Update(mapped);
             _uow.Save();

@@ -1,5 +1,3 @@
-import { Bid } from './bid';
-import { Lot } from './lot';
 
 export class User 
 {
@@ -11,7 +9,5 @@ export class User
     addres:string;
     phone:string;
     appRole: string;
-    // bids:Bid[];
-    // lots:Lot[];
 }
 

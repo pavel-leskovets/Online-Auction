@@ -43,7 +43,7 @@ namespace DAL.Repositories
         /// <param name="predicate">Expression for finding entities.</param>
         public IEnumerable<Lot> Find(Func<Lot, bool> predicate)
         {
-            return context.Lots.Where(predicate);
+            return context.Lots.Include(x => x.Bids).Where(predicate);
         }
 
         /// <summary>

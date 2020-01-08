@@ -31,7 +31,6 @@ export class UserProfileComponent implements OnInit {
     this.editMode = true;
   }
 
-
   onSubmit()
   {
     this.userService.updateProfile(this.currentUser.id).subscribe(
@@ -44,7 +43,6 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
       }
     )
-
   }
 
 

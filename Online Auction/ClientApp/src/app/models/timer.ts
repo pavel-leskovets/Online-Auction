@@ -22,16 +22,14 @@ export class Timer {
 
     public Countdown(countDownDate, beginDate){
       
-        this.interval = setInterval(() => {
+      this.interval = setInterval(() => {
           
-        var now = new Date().getTime();
+      var now = new Date().getTime();
       
       var distanceToBegin = beginDate - now;
             
-      // Find the distance between now and the count down date
       var distanceToEnd = countDownDate - now;
         
-      // Time calculations for days, hours, minutes and seconds
       this.days = Math.floor(distanceToEnd / (1000 * 60 * 60 * 24));
       this.hours = Math.floor((distanceToEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       this.minutes = Math.floor((distanceToEnd % (1000 * 60 * 60)) / (1000 * 60));
@@ -41,8 +39,6 @@ export class Timer {
         this.begin.next(true)
       }
       
-          
-      // If the count down is over, write some text 
       if (distanceToEnd < 0) {
         clearInterval(this.interval);
         this.expaired.next(true);

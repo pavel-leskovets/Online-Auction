@@ -37,45 +37,42 @@ export class LotComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getCurrentUser().subscribe((data: User) => this.currentUser = data);
-    
+
     this.lotId = this.route.snapshot.paramMap.get('id');
-   
+
     this.getLot().subscribe((data: Lot) => {
-      this.lot = data; 
+      this.lot = data;
       this.bidPrice = Math.round(this.lot.currentPrice * 1.05 + 1);
       this.timer.Countdown(new Date(data.endDate), new Date(data.beginDate));
     })
 
     this.timer.isExpaired().subscribe((data: boolean) => this.lotIsExpired = data);
     this.timer.isStarted().subscribe((data: boolean) => this.lotIsStarted = data)
-    
+
   }
-  
-  sortedBids() : Bid[] {
+
+  sortedBids(): Bid[] {
     return this.lot.bids.sort((a, b) => {
       return <any>new Number(b.bidPrice) - <any>new Number(a.bidPrice);
     });
   }
 
-  placeBid()
-  { 
+  placeBid() {
     if (this.userService.getToken() == null) {
       this.toastr.error('Unauthorized user can not place bids!')
     }
     else if (this.bidPrice < this.lot.currentPrice || this.bidPrice == this.lot.currentPrice) {
       this.toastr.error('Bid can not be lower or equal the current price!')
-    } 
-    else if (this.lot.userId == this.currentUser.id)
-    {
+    }
+    else if (this.lot.userId == this.currentUser.id) {
       this.toastr.error('You can not place bid on own lots!')
     }
-    else
-    {
+    else {
       var date = new Date();
-     
+
       const body = {
-        userName : this.currentUser.userName,
-        bidPrice : this.bidPrice,
+        userName: this.currentUser.userName,
+        bidPrice: this.bidPrice,
         userId: this.currentUser.id,
         lotId: this.lot.id,
         bidDate: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
@@ -94,13 +91,8 @@ export class LotComponent implements OnInit {
     }
   }
 
-  getLot() : Observable<Lot>
-  {
+  getLot(): Observable<Lot> {
     return this.lotService.getLot(this.lotId);
   }
-
-
-
-  
 
 }

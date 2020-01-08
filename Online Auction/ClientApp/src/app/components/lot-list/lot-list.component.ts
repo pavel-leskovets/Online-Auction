@@ -12,11 +12,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class LotListComponent implements OnInit {
 
-  public searchString: string;
-  private lots: Lot[];
-  private categoryId: string;
-  private pathSnapshot: string;
-  private isLotsByProfile: boolean;
+  searchString: string;
+  lots: Lot[];
+  categoryId: string;
+  pathSnapshot: string;
+  isLotsByProfile: boolean;
+
+  order: number;
+  reverse: boolean = false;
+
+  nowDate: number;
 
   constructor(
     private lotService: LotService,
@@ -25,6 +30,8 @@ export class LotListComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit() {
+
+    this.nowDate = new Date().getTime();
     this.categoryId = this.route.snapshot.paramMap.get('id');
     this.isLotsByProfile = this.route.snapshot.routeConfig.path.includes('profile');    
   
@@ -40,6 +47,12 @@ export class LotListComponent implements OnInit {
     {
       this.getLots().subscribe((data: Lot[]) => {this.lots = data});
     }
+  }
+
+  setOrder() {
+   
+      this.reverse = !this.reverse;
+    
   }
 
   getLots() : Observable<Lot[]>
@@ -74,10 +87,6 @@ export class LotListComponent implements OnInit {
     else{
       this.router.navigate(['/lots', lot.id,'edit']);
       }
-    
-     
-    
-    
   }
 
   onDeleteLot(id)
@@ -93,6 +102,21 @@ export class LotListComponent implements OnInit {
     )
   }
 
+
+  status(endDate, beginDate) : string
+  {
+    var end = new Date(endDate).getTime();
+    var begin = new Date(beginDate).getTime();
+    if (this.nowDate - begin < 0) {
+      return "Not started yet";
+    }
+    else if (this.nowDate - end > 0) {
+      return "Expired";
+    }
+    else  
+      return "Active";
+
+  }
 
 
 }

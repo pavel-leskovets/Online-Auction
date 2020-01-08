@@ -12,7 +12,11 @@ export class DatePickerComponent implements OnInit {
   
   @Output() startDateEvent = new EventEmitter<Date>();
   @Output() endDateEvent = new EventEmitter<Date>();
-  
+
+  hoveredDate: NgbDate;
+  fromDate: NgbDate;
+  toDate: NgbDate;
+
   ngOnInit() {
     this.sendStartDate();
     this.sendEndtDate();
@@ -22,13 +26,6 @@ export class DatePickerComponent implements OnInit {
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 5);
   }
  
-  hoveredDate: NgbDate;
-
-  fromDate: NgbDate;
-  toDate: NgbDate;
-  
- 
-
   sendStartDate()
   {
     var date = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);
@@ -44,7 +41,6 @@ export class DatePickerComponent implements OnInit {
     else{
       this.endDateEvent.emit(null);
     }
-    
   }
   
 
@@ -57,7 +53,6 @@ export class DatePickerComponent implements OnInit {
       this.toDate = null;
       this.fromDate = date;
     }
-   
       this.sendStartDate()
       this.sendEndtDate()
   }

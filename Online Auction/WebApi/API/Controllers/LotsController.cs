@@ -76,13 +76,13 @@ namespace BLL.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (!lot.Image.ContentType.Contains("image"))
-            {
-                return BadRequest("Invalid image format.");
-            }
-
             if (lot.Image != null)
             {
+                if (!lot.Image.ContentType.Contains("image"))
+                {
+                    return BadRequest("Invalid image format.");
+                }
+
                 try
                 {
                     lot.ImageUrl = ImageHandler.SaveImage(lot.Image, _environment);
@@ -122,17 +122,23 @@ namespace BLL.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (!lot.Image.ContentType.Contains("image"))
-                return BadRequest("Invalid image format.");
-                                   
-            try
+           
+
+            if (lot.Image != null)
             {
-                lot.ImageUrl = ImageHandler.SaveImage(lot.Image, _environment);
+                if (!lot.Image.ContentType.Contains("image"))
+                    return BadRequest("Invalid image format.");
+
+                try
+                {
+                    lot.ImageUrl = ImageHandler.SaveImage(lot.Image, _environment);
+                }
+                catch (Exception)
+                {
+                    return BadRequest("Image upload error.");
+                }
             }
-            catch (Exception)
-            {
-                return BadRequest("Image upload error.");
-            }
+            
            
             try
             {

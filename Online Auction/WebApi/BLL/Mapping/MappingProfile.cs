@@ -17,10 +17,13 @@ namespace BLL.Mapping
         {
             CreateMap<Lot, LotDTO>().ForMember(x => x.CurrentPrice, x => x.MapFrom(
                 src => !src.Bids.Any() ? src.InitialPrice : src.Bids.LastOrDefault().BidPrice));
+
             CreateMap<LotDTO, Lot>();
             CreateMap<Category, CategoryDTO>().ReverseMap();
             CreateMap<Bid, BidDTO>().ReverseMap();
+
             CreateMap<AppUser, AppUserDTO>().ReverseMap();
+  
         }
     }
 }

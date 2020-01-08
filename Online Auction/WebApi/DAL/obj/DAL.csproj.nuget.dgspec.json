@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\DAL\\DAL.csproj": {}
+    "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\DAL\\DAL.csproj": {
+    "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\Pavel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Pavel\\AppData\\Roaming\\NuGet\\NuGet.Config",

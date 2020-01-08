@@ -1,0 +1,23 @@
+<div class="container ">
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-start">
+            <form>
+                <input type="text" class="form-control" [(ngModel)]="newCategoryName"
+                    [ngModelOptions]="{standalone: true}">
+            </form>
+            <button (click)="onCreate()" style="margin-left: 20px;" class="btn btn-primary">Create new category</button>
+        </li>
+    </ul>
+    <ul *ngFor="let category of categories; let i = index" class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between">
+            <form>
+                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="categories[i].name">
+            </form>
+            <div class="row">
+                <button (click)="onEdit(category.id)" style="margin-right: 20px;" class="btn btn-warning">Edit</button>
+                <button (click)="onClickDelete(category.id)" class="btn btn-danger">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>

@@ -8,18 +8,17 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class AuthService {
-   
-  
+
   isLoginSubject = new BehaviorSubject<boolean>(this.hasToken());
   currentUserSubject = new BehaviorSubject<User>(null);
-  
+
   private rootUrl = 'https://localhost:44334/api';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
-   
-   }
-  
-  private hasToken() : boolean {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient) { }
+
+  private hasToken(): boolean {
     return !!localStorage.getItem('token');
   }
 
@@ -33,45 +32,38 @@ export class AuthService {
     Email: ['', [Validators.email, Validators.required]],
     Passwords: this.fb.group({
       Password: ['', [Validators.required, Validators.minLength(4)]],
-      ConfirmPassword: ['', Validators.required]},
-      {validator : this.comparePasswords}
-  )
+      ConfirmPassword: ['', Validators.required]
+    },
+      { validator: this.comparePasswords }
+    )
   });
 
-
-  getUserProfile()
-  {
+  getUserProfile() {
     this.http.get<User>(this.rootUrl + '/users/profile').subscribe((data: User) => this.currentUserSubject.next(data));
   }
 
- 
-  getCurrentUser() : Observable<User>
-  {
+  getCurrentUser(): Observable<User> {
     return this.currentUserSubject.asObservable();
   }
 
-
-  isLoggedIn() : Observable<boolean> {
+  isLoggedIn(): Observable<boolean> {
     return this.isLoginSubject.asObservable();
   }
 
 
-  comparePasswords(fb: FormGroup)
-  {
+  comparePasswords(fb: FormGroup) {
     let checkConfirmPassword = fb.get('ConfirmPassword');
-   
-    if (checkConfirmPassword.errors == null || 'passwordMismatch' in checkConfirmPassword.errors) 
-    {
-      if (fb.get('Password').value != checkConfirmPassword.value) 
-        checkConfirmPassword.setErrors({passwordMismatch: true});
-      else 
+
+    if (checkConfirmPassword.errors == null || 'passwordMismatch' in checkConfirmPassword.errors) {
+      if (fb.get('Password').value != checkConfirmPassword.value)
+        checkConfirmPassword.setErrors({ passwordMismatch: true });
+      else
         checkConfirmPassword.setErrors(null);
-    } 
+    }
   }
 
-  signIn()
-  {
-    var body = 
+  signIn() {
+    var body =
     {
       UserName: this.sigInForm.value.UserName,
       Password: this.sigInForm.value.Password
@@ -79,9 +71,8 @@ export class AuthService {
     return this.http.post(this.rootUrl + '/users/login', body);
   }
 
-  signUp() 
-  {
-    var body = 
+  signUp() {
+    var body =
     {
       UserName: this.signUpForm.value.UserName,
       Email: this.signUpForm.value.Email,
@@ -90,7 +81,4 @@ export class AuthService {
     return this.http.post(this.rootUrl + '/users/Register', body);
   }
 
-  
-
-  
 }

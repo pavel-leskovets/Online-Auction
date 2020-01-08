@@ -8,34 +8,26 @@ import { Observable } from 'rxjs';
 })
 export class BidService {
 
-  private rootUrl = 'https://localhost:44334/api';
-
+  rootUrl = 'https://localhost:44334/api';
 
   constructor(
     private http: HttpClient) { }
 
-    createBid(body)
-    {
-      
-      console.log(body);
-      return this.http.post(this.rootUrl + '/bids', body );  
-    }
+  createBid(body) {
+    console.log(body);
+    return this.http.post(this.rootUrl + '/bids', body);
+  }
 
-    getBidsByUser() : Observable<Bid[]>
-    {
-      return this.http.get<Bid[]>(this.rootUrl + '/users/profile/bids');
-    }
+  getBidsByUser(): Observable<Bid[]> {
+    return this.http.get<Bid[]>(this.rootUrl + '/users/profile/bids');
+  }
 
-    deleteBid(id)
-    {
-      return this.http.delete(this.rootUrl + '/bids/' + id);
-    }
+  deleteBid(id) {
+    return this.http.delete(this.rootUrl + '/bids/' + id);
+  }
 
-    getAllBids()
-    {
-      return this.http.get<Bid[]>(this.rootUrl + '/bids');
-    }
-
-
+  getAllBids() {
+    return this.http.get<Bid[]>(this.rootUrl + '/bids');
+  }
 }
 

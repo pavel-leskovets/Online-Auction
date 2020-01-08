@@ -63,7 +63,7 @@ namespace DAL.Repositories
         /// </summary>
         public IEnumerable<Category> GetAll()
         {
-            return context.Categories.Include(x => x.Lots);
+            return context.Categories.Include(x => x.Lots).OrderBy(x => x.Name);
         }
 
         /// <summary>

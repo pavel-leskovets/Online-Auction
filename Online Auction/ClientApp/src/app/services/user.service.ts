@@ -8,9 +8,9 @@ import { FormBuilder, Validators } from '@angular/forms';
   providedIn: 'root'
 })
 export class UserService {
-
   
-  private rootUrl = 'https://localhost:44334/api';
+  rootUrl = 'https://localhost:44334/api';
+  
   constructor(
     private http: HttpClient,
     private fb: FormBuilder) { }

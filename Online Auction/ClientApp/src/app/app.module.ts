@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +13,8 @@ import { LotListComponent } from './components/lot-list/lot-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { TokenInterceptorService} from './services/http-interceptor.service'
-import { ReactiveFormsModule} from '@angular/forms'
+import { TokenInterceptorService } from './services/http-interceptor.service'
+import { ReactiveFormsModule } from '@angular/forms'
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { LotComponent } from './components/lot/lot.component';
@@ -32,13 +32,14 @@ import { UsersComponent } from './components/admin/users/users.component';
 import { LotsComponent } from './components/admin/lots/lots.component';
 import { BidsComponent } from './components/admin/bids/bids.component';
 import { EditDateComponent } from './components/edit-lot/edit-date/edit-date.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-  
     CategoryListComponent,
     LotListComponent,
     NavbarComponent,
@@ -57,7 +58,9 @@ import { EditDateComponent } from './components/edit-lot/edit-date/edit-date.com
     LotsComponent,
     BidsComponent,
     EditDateComponent,
-    
+    CategoriesComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -73,10 +76,7 @@ import { EditDateComponent } from './components/edit-lot/edit-date/edit-date.com
     }),
     NgbModule,
     FormsModule,
-    
-    
-    
-    
+    OrderModule
   ],
   providers: [AuthService, UserService,
     {

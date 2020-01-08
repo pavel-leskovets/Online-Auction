@@ -53,6 +53,7 @@ namespace BLL.Services
         {
             var mapped = _mapper.Map<Category>(category);
             _uow.Categories.Create(mapped);
+            _uow.Save();
             return _mapper.Map<CategoryDTO>(mapped);
         }
 
@@ -85,6 +86,7 @@ namespace BLL.Services
         {
             var mapped = _mapper.Map<Category>(category);
             _uow.Categories.Update(mapped);
+            _uow.Save();
         }
 
         #region IDisposable Support

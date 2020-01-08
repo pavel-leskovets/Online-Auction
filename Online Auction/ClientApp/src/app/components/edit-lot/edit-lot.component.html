@@ -1,55 +1,57 @@
-<div *ngIf="currentLot"  class="container">
-    <h1 class="text-center">Edit lot</h1>
+<div *ngIf="currentLot" class="container">
+  <h1 class="text-center">Edit lot</h1>
   <div class="row">
-      <div class=" col ">
+
+    <div class=" col ">
       <div class="form-group">
-        <app-edit-date (startDateEvent)="reciveStartDate($event)" (endDateEvent)="reciveEndDate($event)"></app-edit-date>
+        <app-edit-date (startDateEvent)="reciveStartDate($event)" (endDateEvent)="reciveEndDate($event)">
+        </app-edit-date>
       </div>
       <hr>
       <p>From: {{fromDate | date:'medium'}}</p>
-      <p >To: {{toDate | date:'medium'}}</p>
-    
+      <p>To: {{toDate | date:'medium'}}</p>
     </div>
-  
+
     <div class=" col ">
-     
-      <form [formGroup] = "lotService.AddLotForm" (submit)="onSubmit()" >
-       
-          <div class="form-group" >
-            <label>Lot name</label>
-            <input type="text" class="form-control" formControlName="LotName" [ngModel]="currentLot.name">
-          </div>
-          <div class="form-group">
-            <label>Initial price</label>
-            <input type="number" class="form-control" formControlName="InitialPrice"[ngModel]="currentLot.initialPrice" >
-          </div>
-          
-          <div  class="form-group">
-            <label>Category</label>
-            <select class="form-control" formControlName="CategoryId">
-            <option *ngFor="let category of categories" [value]="category.id" id="category.id">{{category.name}}</option>
+      <form [formGroup]="lotService.AddLotForm" (submit)="onSubmit()">
+        <div class="form-group">
+          <label>Lot name</label>
+          <input type="text" class="form-control" formControlName="LotName" [ngModel]="currentLot.name">
+        </div>
+        <div class="form-group">
+          <label>Initial price</label>
+          <input type="number" class="form-control" formControlName="InitialPrice" [ngModel]="currentLot.initialPrice">
+        </div>
+
+        <div class="form-group">
+          <label>Category</label>
+          <select class="form-control" formControlName="CategoryId">
+            <option [selected]="currentLot.CategoryId" *ngFor="let category of categories" [value]="category.id">
+              {{category.name}}
+            </option>
           </select>
-          </div>
-       
-       
-  
-         
-  
-          
-          <div class="form-group">
-            <label>Description</label>
-            <textarea class="form-control" aria-label="With textarea" formControlName="Description" [ngModel]="currentLot.description"></textarea>
-            
-          </div>
-          
-          <div class="form-group">
-            <label for="image">Photo</label>
-            <input type="file" class="form-control-file" accept="image/*" id="image" (change)="imageUpload($event)">
-          </div>
-  
-         
-          <button [disabled]="!lotService.AddLotForm.valid" type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-      
-  
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea class="form-control" aria-label="With textarea" formControlName="Description"
+            [ngModel]="currentLot.description"></textarea>
+        </div>
+
+        <ng-container *ngIf="currentLot.imageUrl; else other_content">
+          <img class="img-fluid" [src]="'https://localhost:44334' + currentLot.imageUrl" alt="Lot image">
+        </ng-container>
+        <ng-template #other_content>
+          <img class="img-fluid" [src]="imageUrl" alt="Lot image">
+        </ng-template>
+
+        <div class="form-group">
+          <label for="image">Photo</label>
+          <input type="file" class="form-control-file" accept="image/*" id="image" (change)="imageUpload($event)">
+        </div>
+
+        <button [disabled]="!lotService.AddLotForm.valid" type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

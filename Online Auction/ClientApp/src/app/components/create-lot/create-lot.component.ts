@@ -13,9 +13,9 @@ import { NgForm } from '@angular/forms'
 })
 export class CreateLotComponent implements OnInit {
 
+  imageUrl: string;
   image: File = null;
   categories: Category[];
-  categoryID: NgForm;
   fromDate: Date;
   toDate: Date;
 
@@ -25,60 +25,54 @@ export class CreateLotComponent implements OnInit {
     private categoryService: CategoryService) { }
 
   ngOnInit() {
+    this.imageUrl = "";
     this.lotService.AddLotForm.reset();
     this.getCategories().subscribe((data: Category[]) => this.categories = data);
   }
 
-  
-  setCategory()
-  {
-    this.lotService.AddLotForm.controls['BeginDate'].setValue(this.categoryID);
-  }
- 
-
-  reciveStartDate($event)
-  {
+  reciveStartDate($event) {
     this.lotService.AddLotForm.controls['BeginDate'].setValue($event);
     this.fromDate = $event;
   }
-  reciveEndDate($event)
-  {
+  reciveEndDate($event) {
     this.lotService.AddLotForm.controls['EndDate'].setValue($event);
     this.toDate = $event;
 
   }
 
-  getCategories() : Observable<Category[]>
-  {
+  getCategories(): Observable<Category[]> {
     return this.categoryService.getCategories();
   }
-    
+
   imageUpload(event) {
     var file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
     var pattern = /image-*/;
     if (!file.type.match(pattern)) {
       this.toastr.error("Invalid image format.")
-    } 
+    }
     else {
       this.image = (event.target as HTMLInputElement).files[0];
       this.lotService.AddLotForm.controls['Image'].setValue(this.image);
+
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageUrl = event.target.result;
+      }
+      reader.readAsDataURL(file);
     }
-   }
+  }
 
-  
-
-  
-  
-  onSubmit() 
-  {
+  onSubmit() {
     var now = new Date().getTime();
     var start = this.fromDate.getTime();
-     
-    if ( false) {
+    if (this.image == null) {
+      this.toastr.error('Image required');
+      return;
+    }
+    if (start - now < 0) {
       this.toastr.error("Auction can't begin earlier than now");
     }
-    else
-    {
+    else {
       this.lotService.createLot(this.image).subscribe(
         res => {
           this.toastr.success('New lot has been created');
@@ -90,9 +84,5 @@ export class CreateLotComponent implements OnInit {
         }
       )
     }
-    
-
   }
-
-
 }

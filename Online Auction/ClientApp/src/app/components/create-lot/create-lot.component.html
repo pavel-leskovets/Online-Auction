@@ -1,21 +1,19 @@
 <div class="container">
   <h1 class="text-center">Create new lot</h1>
-<div class="row">
-    <div class=" col ">
-    <div class="form-group">
-      <app-date-picker (startDateEvent)="reciveStartDate($event)" (endDateEvent)="reciveEndDate($event)"></app-date-picker>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <app-date-picker (startDateEvent)="reciveStartDate($event)" (endDateEvent)="reciveEndDate($event)">
+        </app-date-picker>
+      </div>
+      <hr>
+      <p>From: {{fromDate | date:'medium'}}</p>
+      <p>To: {{toDate | date:'medium'}}</p>
     </div>
-    <hr>
-    <p>From: {{fromDate | date:'medium'}}</p>
-    <p >To: {{toDate | date:'medium'}}</p>
-  
-  </div>
 
-  <div class=" col ">
-   
-    <form [formGroup] = "lotService.AddLotForm" (submit)="onSubmit()" >
-     
-        <div class="form-group" >
+    <div class="col">
+      <form [formGroup]="lotService.AddLotForm" (submit)="onSubmit()">
+        <div class="form-group">
           <label>Lot name</label>
           <input type="text" class="form-control" formControlName="LotName">
         </div>
@@ -23,33 +21,32 @@
           <label>Initial price</label>
           <input type="number" class="form-control" formControlName="InitialPrice">
         </div>
-        
-        <div  class="form-group">
+
+        <div class="form-group">
           <label>Category</label>
-          <select class="form-control" formControlName="CategoryId"
-         >
-          <option *ngFor="let category of categories" [value]="category.id" id="category.id">{{category.name}}</option>
-        </select>
+          <select class="form-control" formControlName="CategoryId">
+            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          </select>
         </div>
-     
-     
 
-       
-
-        
         <div class="form-group">
           <label>Description</label>
           <textarea class="form-control" aria-label="With textarea" formControlName="Description"></textarea>
-          
         </div>
-        
+
+        <ng-container *ngIf="!imageUrl; else other_content">
+          <img class="img-fluid" [src]="'https://localhost:44334/upload/default-image.jpg'" alt="Lot image">
+        </ng-container>
+        <ng-template #other_content>
+          <img class="img-fluid" [src]="imageUrl" alt="Lot image">
+        </ng-template>
+
         <div class="form-group">
           <label for="image">Photo</label>
           <input type="file" class="form-control-file" accept="image/*" id="image" (change)="imageUpload($event)">
         </div>
 
-       
+
         <button [disabled]="!lotService.AddLotForm.valid" type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
-    

@@ -16,33 +16,32 @@ import { EditLotComponent } from './components/edit-lot/edit-lot.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { LotsComponent } from './components/admin/lots/lots.component';
 import { BidsComponent } from './components/admin/bids/bids.component';
-
-
+import { CategoriesComponent } from './components/admin/categories/categories.component';
 
 const routes: Routes = [
-  { 
-    path: 'admin', component: AdminComponent, canActivate: [SignInGuard], data : {permittedRoles : ['Admin', 'Moderator']},
+  {
+    path: 'admin', component: AdminComponent, canActivate: [SignInGuard], data: { permittedRoles: ['Admin', 'Moderator'] },
     children: [
-      { path: 'users', component: UsersComponent, canActivate: [SignInGuard], data : {permittedRoles : ['Admin']}},
-      { path: 'lots', component: LotsComponent},
-      { path: 'bids', component: BidsComponent}
-    ]
+      { path: 'users', component: UsersComponent, canActivate: [SignInGuard], data: { permittedRoles: ['Admin'] } },
+      { path: 'lots', component: LotsComponent },
+      { path: 'bids', component: BidsComponent },
+      { path: 'categories', component: CategoriesComponent }]
   },
-  { path: 'createLot', component: CreateLotComponent, canActivate: [SignInGuard]},
-  { path: 'signin', component: SignInComponent, canActivate: [UnauthorizedGuard]},
-  { path: 'signup', component: SignUpComponent, canActivate: [UnauthorizedGuard]},
-  { path: 'lots', component: LotListComponent},
-  { path: 'lots/:id', component: LotComponent},
-  { path: 'lots/:id/edit', component: EditLotComponent, canActivate: [SignInGuard]},
-  { path: 'users/profile', component: UserProfileComponent, canActivate: [SignInGuard]},
-  { path: 'users/profile/bids', component: BidListComponent, canActivate: [SignInGuard]},
-  { path: 'users/profile/lots', component: LotListComponent, canActivate: [SignInGuard]},
-  { path: 'categories', component: CategoryListComponent},
-  { path: 'categories/:id/lots', component: LotListComponent},
-  { path: 'forbidden', component: ForbiddenComponent},
-  { path: '**', redirectTo: 'categories' },
+  { path: 'createLot', component: CreateLotComponent, canActivate: [SignInGuard] },
+  { path: 'signin', component: SignInComponent, canActivate: [UnauthorizedGuard] },
+  { path: 'signup', component: SignUpComponent, canActivate: [UnauthorizedGuard] },
+  { path: 'lots', component: LotListComponent },
+  { path: 'lots/:id', component: LotComponent },
+  { path: 'lots/:id/edit', component: EditLotComponent, canActivate: [SignInGuard] },
+  { path: 'users/profile', component: UserProfileComponent, canActivate: [SignInGuard] },
+  { path: 'users/profile/bids', component: BidListComponent, canActivate: [SignInGuard] },
+  { path: 'users/profile/lots', component: LotListComponent, canActivate: [SignInGuard] },
+  { path: 'categories', component: CategoryListComponent },
+  { path: 'categories/:id/lots', component: LotListComponent },
+  { path: 'forbidden', component: ForbiddenComponent },
+  { path: '**', redirectTo: 'categories'},
   { path: '', component: CategoryListComponent, pathMatch: 'full' }
- 
+
 ];
 
 @NgModule({
@@ -51,12 +50,12 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 export const routingComponents = [
-  UserProfileComponent, 
-  CreateLotComponent, 
-  AdminComponent, 
-  CategoryListComponent, 
-  LotListComponent, 
-  LotComponent, 
+  UserProfileComponent,
+  CreateLotComponent,
+  AdminComponent,
+  CategoryListComponent,
+  LotListComponent,
+  LotComponent,
   SignInComponent,
   SignUpComponent,
   BidListComponent,

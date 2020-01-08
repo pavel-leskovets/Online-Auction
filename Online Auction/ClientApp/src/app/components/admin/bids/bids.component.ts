@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BidsComponent implements OnInit {
 
   bids: Bid[];
+  
   constructor(
     private bidService: BidService,
     private router: Router,
@@ -39,7 +40,6 @@ export class BidsComponent implements OnInit {
   onSelect(id)
   {
     this.router.navigate(['/lots', id]);
-
   }
 
   onClickDelete(id)

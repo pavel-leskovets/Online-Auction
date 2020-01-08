@@ -11,6 +11,10 @@ export class EditDateComponent implements OnInit {
 
   @Output() startDateEvent = new EventEmitter<Date>();
   @Output() endDateEvent = new EventEmitter<Date>();
+
+  hoveredDate: NgbDate;
+  fromDate: NgbDate;
+  toDate: NgbDate;
   
   ngOnInit() {
     this.sendStartDate();
@@ -21,13 +25,6 @@ export class EditDateComponent implements OnInit {
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 5);
   }
  
-  hoveredDate: NgbDate;
-
-  fromDate: NgbDate;
-  toDate: NgbDate;
-  
- 
-
   sendStartDate()
   {
     var date = new Date(this.fromDate.year, this.fromDate.month - 1, this.fromDate.day);

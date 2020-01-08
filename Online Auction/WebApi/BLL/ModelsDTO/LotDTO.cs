@@ -64,7 +64,6 @@ namespace BLL.ModelsDTO
         /// <summary>
         /// Represents a photo sent with the HttpRequest.
         /// </summary>
-        [Required]
         public IFormFile Image { get; set; }
 
         /// <summary>

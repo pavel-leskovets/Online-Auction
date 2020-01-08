@@ -14,7 +14,6 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.Extensions.Options;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
-using BLL.Exeptions;
 
 namespace BLL.Services
 {

@@ -12,6 +12,7 @@ import { Router} from '@angular/router'
 export class CategoryListComponent implements OnInit {
 
   categories: Category[];
+  
   constructor (
     private categoryService: CategoryService, 
     private router: Router ) { }

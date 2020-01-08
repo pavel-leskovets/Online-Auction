@@ -10,7 +10,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+
   users: User[];
+  
   constructor(
     private userService: UserService,
     private toastr: ToastrService) { }

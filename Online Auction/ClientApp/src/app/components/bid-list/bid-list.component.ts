@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class BidListComponent implements OnInit {
 
   bids: Bid[];
+  
   constructor(
     private bidService: BidService,
     private router: Router,
@@ -34,12 +35,10 @@ export class BidListComponent implements OnInit {
         return <any>new Date(b.bidDate) - <any>new Date(a.bidDate);
       });
     }
-    
   }
 
   onSelect(id)
   {
     this.router.navigate(['/lots', id]);
   }
-  
 }

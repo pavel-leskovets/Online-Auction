@@ -1,61 +1,54 @@
-
-   
-
 <div class="container">
-    <form [formGroup] = "userService.UserForm" (submit)="onSubmit()" >
-       
+    <form [formGroup]="userService.UserForm" (submit)="onSubmit()">
 
-       
-
-        <div class="form-group" >
-          <label>User name</label>
-          <input disabled type="text" class="form-control" formControlName="UserName" [ngModel]="currentUser.userName" >
+        <div class="form-group">
+            <label>User name</label>
+            <input disabled type="text" class="form-control" formControlName="UserName"
+                [ngModel]="currentUser.userName">
         </div>
 
         <fieldset [disabled]="!editMode">
 
-        <div class="form-group" >
-            <label>Emai</label>
+            <div class="form-group">
+                <label>Emai</label>
                 <input type="text" class="form-control" formControlName="Emai" [ngModel]="currentUser.email">
-          
-           
-        </div>
 
-        <div class="form-group" >
-            <label>First name</label>
-                <input type="text" class="form-control" formControlName="FirstName" [value]="currentUser.firstName">            
-           
-       
-        </div>
 
-        <div class="form-group" >
-            <label>Last name</label>
-                <input type="text" class="form-control" formControlName="LastName" [ngModel]="currentUser.lastName">
-        
-        </div>
-
-        <div class="form-group" >
-            <label>Addres</label>
-                <input type="text" class="form-control" formControlName="Addres" [ngModel]="currentUser.addres">
-            
             </div>
-        <div class="form-group" >
-            <label>Phone</label>
+
+            <div class="form-group">
+                <label>First name</label>
+                <input type="text" class="form-control" formControlName="FirstName" [value]="currentUser.firstName">
+
+
+            </div>
+
+            <div class="form-group">
+                <label>Last name</label>
+                <input type="text" class="form-control" formControlName="LastName" [ngModel]="currentUser.lastName">
+
+            </div>
+
+            <div class="form-group">
+                <label>Addres</label>
+                <input type="text" class="form-control" formControlName="Addres" [ngModel]="currentUser.addres">
+
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
                 <input type="text" class="form-control" formControlName="Phone" [ngModel]="currentUser.phone">
-           
-        </div>
-        
-       </fieldset>
-       <ng-container *ngIf="!editMode">
+
+            </div>
+
+        </fieldset>
+        <ng-container *ngIf="!editMode">
             <button (click)="onEditMode()" class="btn btn-light">Edit profile</button>
         </ng-container>
-    
+
         <ng-container *ngIf="editMode">
-            <button [disabled]="!userService.UserForm.valid"  type="submit" class="btn btn-primary">Submit</button>
+            <button [disabled]="!userService.UserForm.valid" type="submit" class="btn btn-primary">Submit</button>
         </ng-container>
-        
+
     </form>
-    
+
 </div>
-
-

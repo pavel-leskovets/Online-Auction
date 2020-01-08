@@ -6158,11 +6158,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\BLL\\BLL.csproj",
+      "projectUniqueName": "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\BLL\\BLL.csproj",
       "projectName": "BLL",
-      "projectPath": "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\BLL\\BLL.csproj",
+      "projectPath": "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\BLL\\BLL.csproj",
       "packagesPath": "C:\\Users\\Pavel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\BLL\\obj\\",
+      "outputPath": "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\BLL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Pavel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6178,8 +6178,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\DAL\\DAL.csproj": {
-              "projectPath": "C:\\Users\\Pavel\\Documents\\GitHub\\Online Auction\\WebApi\\DAL\\DAL.csproj"
+            "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\Pavel\\source\\repos\\Online Auction\\WebApi\\DAL\\DAL.csproj"
             }
           }
         }

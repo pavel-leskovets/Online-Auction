@@ -29,7 +29,7 @@ export class LotService {
       BeginDate: ['', Validators.required],
       EndDate: ['', Validators.required],
       Description: ['', Validators.required],
-      Image: ['', Validators.required]
+      Image: ['',]
     })
 
     createLot(image)
@@ -70,7 +70,7 @@ export class LotService {
     return this.http.get<Lot[]>(this.rootUrl + '/users/profile/lots');
   }
 
-  updateLot(image, lotId)
+  updateLot(image, lotId, imageUrl )
   {
     const formData: FormData = new FormData();
 
@@ -84,10 +84,11 @@ export class LotService {
      formData.append('BeginDate', this.AddLotForm.value.BeginDate.toISOString());
      formData.append('EndDate', this.AddLotForm.value.EndDate.toISOString());
      formData.append('Description', this.AddLotForm.value.Description);
-     formData.append('Image', image, image.name);
-     
-     
-     console.log(formData);
+     if (image != null) {
+      formData.append('Image', image, image.name);
+     }
+     formData.append('ImageUrl', imageUrl)
+          
      return this.http.put(this.rootUrl + '/lots/' + lotId, formData );  
   }
 

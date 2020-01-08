@@ -15,8 +15,8 @@ import { LotService } from 'src/app/services/lot.service';
 })
 export class NavbarComponent implements OnInit {
  
-  public isLoggedIn : boolean;
-  public currentUser: User;
+  isLoggedIn : boolean;
+  currentUser: User;
 
   constructor( 
     private router: Router, 

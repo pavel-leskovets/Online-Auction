@@ -12,32 +12,28 @@ import { Observable } from 'rxjs';
 })
 export class LotsComponent implements OnInit {
 
+  searchString: string;
+  lots: Lot[];
+
   constructor(
     private lotService: LotService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService)
-   { }
+    private toastr: ToastrService) { }
 
-  public searchString: string;
-  private lots: Lot[];
-  
   ngOnInit() {
-    this.getLots().subscribe((data: Lot[]) => {this.lots = data});
+    this.getLots().subscribe((data: Lot[]) => { this.lots = data });
   }
 
-  getLots() : Observable<Lot[]>
-  {
+  getLots(): Observable<Lot[]> {
     return this.lotService.getLots();
   }
 
-  onSelectLot (id)
-  {
+  onSelectLot(id) {
     this.router.navigate(['/lots', id]);
   }
 
-  onClickDelete(id)
-  {
+  onClickDelete(id) {
     this.lotService.deleteLot(id).subscribe(
       res => {
         this.toastr.success('Lot has been deleted.');
@@ -47,7 +43,5 @@ export class LotsComponent implements OnInit {
         this.toastr.error(err.error);
       }
     );
-    
   }
-
 }

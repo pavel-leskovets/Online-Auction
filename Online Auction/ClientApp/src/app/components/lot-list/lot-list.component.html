@@ -1,9 +1,16 @@
-<div class="container w-75 p-3 mx-auto">
-  <div class="d-flex justify-content-center">
-    <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search by name">
-  </div>
+<div class="container w-75 p-3">
+  <div class="row" >
+    <div class="col">
+      <input type="text" class="form-control" [(ngModel)]="searchString" placeholder="Search by name">
+    </div>
+    <div class="col">
+      <button style="margin-right: 10px;" class="btn btn-secondary" (click)="setOrder()">Order by price</button>
+      <span [hidden]="reverse">&darr;</span><span [hidden]="!reverse">&uarr;</span>
+    </div>
+    </div>
+ 
   <div class="row">
-    <div *ngFor="let lot of lots | lotFilter:searchString" class=" col-md-4">
+    <div *ngFor="let lot of (lots | lotFilter:searchString) | orderBy: 'currentPrice' : reverse" class=" col-md-4">
       <div class="card">
         <a routerLink="" (click)="onSelectLot(lot.id)">
           <ng-container *ngIf="lot?.imageUrl; else other_content">
@@ -20,6 +27,7 @@
           <p class="card-text">{{lot.currentPrice}} USD
             <br>Begin: {{lot.beginDate | date:'mediumDate'}}
             <br>End: {{lot.endDate | date:'mediumDate'}}
+            <br><span style="font-size: large; font-weight: bold;" class="text-info">{{status(lot.endDate, lot.beginDate)}}</span>
           </p>
 
           <ng-container *ngIf="isLotsByProfile">
@@ -27,8 +35,10 @@
               <button type="button"  class="btn btn-primary btn-sm" (click)="onEditLot(lot)">Edit</button> 
               <button type="button" class="btn btn-warning btn-sm" (click)="onDeleteLot(lot.id)">Delete</button>        
             </div>
-
           </ng-container>
+
+         
+
 
         </div>
       </div>

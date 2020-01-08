@@ -16,15 +16,14 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./edit-lot.component.css']
 })
 export class EditLotComponent implements OnInit {
-  
-  private lotId: string;
-  private currentUser: User;
-  private currentLot: Lot;
+
+  lotId: string;
+  currentUser: User;
+  currentLot: Lot;
   interval: any;
-  
+  imageUrl: string;
   image: File = null;
   categories: Category[];
-  categoryID: NgForm;
   fromDate: Date;
   toDate: Date;
 
@@ -37,6 +36,7 @@ export class EditLotComponent implements OnInit {
     private categoryService: CategoryService) { }
 
   ngOnInit() {
+
     this.lotId = this.route.snapshot.paramMap.get('id');
 
     this.authService.getCurrentUser().subscribe((data: User) => this.currentUser = data);
@@ -62,69 +62,58 @@ export class EditLotComponent implements OnInit {
     }, 100)
   }
 
-
-
-
   getLot(): Observable<Lot> {
     return this.lotService.getLot(this.lotId)
   }
 
- 
 
-   
-  setCategory()
-  {
-    this.lotService.AddLotForm.controls['BeginDate'].setValue(this.categoryID);
+  getCurrentCategory() {
+    return this.categories.find(x => x.id == this.currentLot.categoryId).name;
   }
- 
 
-  reciveStartDate($event)
-  {
+  reciveStartDate($event) {
     this.lotService.AddLotForm.controls['BeginDate'].setValue($event);
     this.fromDate = $event;
   }
-  reciveEndDate($event)
-  {
+  reciveEndDate($event) {
     this.lotService.AddLotForm.controls['EndDate'].setValue($event);
     this.toDate = $event;
-
   }
 
-  getCategories() : Observable<Category[]>
-  {
+  getCategories(): Observable<Category[]> {
     return this.categoryService.getCategories();
   }
-    
+
   imageUpload(event) {
     var file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
     var pattern = /image-*/;
     if (!file.type.match(pattern)) {
       this.toastr.error("Invalid image format.")
-    } 
+    }
     else {
       this.image = (event.target as HTMLInputElement).files[0];
       this.lotService.AddLotForm.controls['Image'].setValue(this.image);
+      this.currentLot.imageUrl = null;
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.imageUrl = event.target.result;
+      }
+      reader.readAsDataURL(file);
     }
-   }
+  }
 
-  
-
-  
-  
-  onSubmit() 
-  {
+  onSubmit() {
     var now = new Date().getTime();
     var start = this.fromDate.getTime();
-     
-    if ( now - start > 0) {
+
+    if (now - start > 0) {
       this.toastr.error("Auction can't begin earlier than now");
     }
-    else
-    {
-      this.lotService.updateLot(this.image, this.currentLot.id).subscribe(
+    else {
+      this.lotService.updateLot(this.image, this.currentLot.id, this.currentLot.imageUrl).subscribe(
         res => {
           this.toastr.success('Lot has been successfully updated');
-          this.ngOnInit();
+
         },
         err => {
           console.log(err);
@@ -132,7 +121,7 @@ export class EditLotComponent implements OnInit {
         }
       )
     }
-    
+
 
   }
 }
